@@ -42,13 +42,37 @@ MealPlan.prototype.getRecipe = function(dayBox) {
 
 MealPlan.prototype.getIngredients = function() {
   var shoppingList = [];
-  this.recipes.forEach(function(recipe) {
-    recipe.ingredients.forEach(function(ingredient) {
-      shoppingList.push(ingredient);
-    });
+  this.days.forEach(function(day) {
+    if (day.dinner) {
+      day.dinner.ingredients.forEach(function(ingredient) {
+        var index = shoppingList.findIndex(function(item) {
+          return item.ingredientName === ingredient.ingredientName
+        });
+        if (index === -1) {
+          shoppingList.push(ingredient);
+        } else if (shoppingList[index].unit === ingredient.unit){
+          shoppingList[index].quantity += ingredient.quantity;
+        } else {
+          shoppingList.push(ingredient);
+        };
+      });
+    }
   });
+  shoppingList.sort(ingredientSort);
   return shoppingList;
 };
+
+
+function ingredientSort(a, b) {
+  if (a.ingredientName < b.ingredientName) {
+    return -1;
+  } else if (a.ingredientName > b.ingredientName) {
+    return 1;
+  } else {
+    return 0;
+  };
+};
+
 
 function Day(dayName) {
   this.dayName = dayName;
@@ -70,13 +94,13 @@ RecipeBook.prototype.getRecipe = function(recipeName) {
 };
 
 
-var week = new MealPlan();
+var mealPlan = new MealPlan();
 var recipeBook = new RecipeBook();
 
 
 // Front-End
 function updateDays() {
-  week.days.forEach(function(day) {
+  mealPlan.days.forEach(function(day) {
     if (day.dinner) {
       $("#"+day.dayName).empty();
       $("#"+day.dayName).append("<li id='" + day.dayName + "Dinner' draggable='true' ondragstart='drag(event)'>" + day.dinner.displayName + "</li>");
@@ -101,18 +125,18 @@ function drop(ev) {
   var data = ev.dataTransfer.getData("text");
   var parent = document.getElementById(data).parentElement;
   if ((parent.id === "recipes") && $(ev.target).hasClass("week-day")) {
-    week.addRecipe(ev.target.id, recipeBook.getRecipe(data));
+    mealPlan.addRecipe(ev.target.id, recipeBook.getRecipe(data));
     updateDays();
   } else if ($(parent).hasClass("week-day") && $(ev.target).hasClass("week-day")) {
-    var recipe = week.getRecipe(parent.id);
-    week.addRecipe(ev.target.id, recipe);
-    week.addRecipe(parent.id, null)
+    var recipe = mealPlan.getRecipe(parent.id);
+    mealPlan.addRecipe(ev.target.id, recipe);
+    mealPlan.addRecipe(parent.id, null)
     updateDays();
   } else if($(parent).hasClass("week-day")){
-    week.addRecipe(parent.id, null)
+    mealPlan.addRecipe(parent.id, null)
     updateDays();
   };
-  console.log(week);
+  console.log(mealPlan);
 };
 
 $(function() {
@@ -129,6 +153,14 @@ $(function() {
   recipeBook.recipes.push(risotto);
 
   displayRecipes();
+
+  $("#shopping-list").click(function() {
+    var shopList = mealPlan.getIngredients();
+    // console.log(shopList);
+    shopList.forEach(function(item) {
+      console.log(item.ingredientName, item.quantity, item.unit);
+    });
+  });
 
   $("#add-ingredient").click(function(event){
     event.preventDefault();
