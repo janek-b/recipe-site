@@ -16,22 +16,23 @@
           <form id="recipe-form">
             <div class="form-group">
               <label for="recipe-name">Enter your recipe name</label>
-              <input id="recipe-name" class="form-control" type="text">
+              <input id="recipe-name" class="form-control" type="text" required>
             </div>
 
-
+          <div id="new-ingredient">
+            <div class="new-ingredient">
             <div class="form-group col-sm-4">
               <label for="ingredient-name">Enter ingredient</label>
-              <input id="ingredient-name" class="form-control" type="text">
+              <input class="ingredient-name form-control" type="text" required>
             </div>
             <div class="form-group col-sm-4">
               <label for="quantity">Enter Quantity</label>
-              <input id="quantity" class="form-control" type="text" placeholder="Example: '3', '0.5'">
+              <input class="quantity form-control" type="number" placeholder="Example: 3, 0.5" step="0.1" min="0" required>
             </div>
             <div class="form-group col-sm-4">
               <label for="Unit">Unit of Measure</label>
-              <select class='form-control' id='unit-of-measure'>
-                <option value=""> <br>
+              <select class='form-control unit-of-measure' required="">
+                <option value="" disabled selected=""> <br>
                 <option value="each"> each<br>
                 <option value="teaspoon"> teaspoon<br>
                 <option value="tablespoon"> tablespoon<br>
@@ -40,42 +41,33 @@
                 <option value="pounds"> pound <br>
               </select>
             </div>
-            <div id="meat-or-not">
+            <div class="meat-or-not">
               <p>
                 <strong>Does this ingredient contain meat?</strong>
               </p>
-              <div class="radio-inline">
+              <div class="form-group">
                 <label>
-                  <input type="radio" name="meat" value="true" checked>
+                  <input type="checkbox" name="meat" value="true">
                   Yes
                 </label>
               </div>
-              <div class="radio-inline">
-                <label>
-                  <input type="radio" name="meat" value="false">
-                  No
-                </label>
-              </div>
             </div>
-            <div id="dairy-or-not">
+            <div class="dairy-or-not">
               <p>
                 <strong>Does this ingredient contain dairy?</strong>
               </p>
-              <div class="radio-inline">
+              <div class="form-group">
                 <label>
-                  <input type="radio" name="dairy" value="true" checked>
+                  <input type="checkbox" name="dairy" value="true">
                   Yes
                 </label>
               </div>
-              <div class="radio-inline">
-                <label>
-                  <input type="radio" name="dairy" value="false">
-                  No
-                </label>
-              </div>
             </div>
-            <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
 
+              <!-- this will contain new ingredient form on click   -->
+          </div>
+          </div>
+            <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
           <div class="form-group">
             <label for="meal-image">Add image url for your meal</label>
             <input id="meal-image" class="form-control" type="text">
@@ -90,6 +82,7 @@
 
           <button type="submit" class="btn btn-primary">Add your recipe</button>
         </form>
+
       </div>
     </div>
     <div class="container">

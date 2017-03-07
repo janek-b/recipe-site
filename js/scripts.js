@@ -129,4 +129,63 @@ $(function() {
 
   displayRecipes();
 
+  var recipeBook = new RecipeBook();
+  $("#add-ingredient").click(function(event){
+    event.preventDefault();
+    $("#new-ingredient").append("<div class='new-ingredient'>"+
+            "<div class='form-group col-sm-4'>"+
+              "<label for='ingredient-name'>Enter ingredient</label>"+
+              "<input class='ingredient-name form-control' type='text' required></div>"+
+            "<div class='form-group col-sm-4'>"+
+              "<label for='quantity'>Enter Quantity</label>"+
+              "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required></div>"+
+            "<div class='form-group col-sm-4'>"+
+              "<label for='Unit'>Unit of Measure</label>"+
+              "<select class='form-control unit-of-measure'>"+
+                "<option value=''> <br>"+
+                "<option value='each'> each<br>"+
+                "<option value='teaspoon'> teaspoon<br>"+
+                "<option value='tablespoon'> tablespoon<br>"+
+                "<option value='ounces'> ounce<br>"+
+                "<option value='cup'> cup<br>"+
+                "<option value='pounds'> pound <br>"+
+              "</select></div>"+
+            "<div class='meat-or-not'>"+
+              "<p><strong>Does this ingredient contain meat?</strong></p>"+
+              "<div class='form-group'>"+
+                "<label><input type='checkbox' name='meat' value='true'>Yes</label></div>"+
+            "</div>"+
+            "<div class='dairy-or-not'>"+
+              "<p><strong>Does this ingredient contain dairy?</strong></p>"+
+              "<div class='form-group'>"+
+                "<label><input type='checkbox' name='dairy' value='true'>Yes</label></div>"+
+            "</div>");
+  });
+  $("#user-recipe").click(function(){
+    $("#recipe-form").slideDown();
+  });
+  $("#recipe-form").submit(function(event){
+    event.preventDefault();
+    var recipeName = $("input#recipe-name").val();
+    var recipeImage = $("input#meal-image").val();
+    var recipeInstructions = $("input#cooking-instructions").val();
+    var newRecipe = new Recipe(recipeName, recipeImage, recipeInstructions);
+    $(".new-ingredient").each(function() {
+      var ingredientName = $(this).find("input.ingredient-name").val();
+      var quantity = parseFloat($(this).find("input.quantity").val());
+      var unit = $(this).find("select.unit-of-measure").val();
+      var containsMeat = $(this).find("input:checkbox[name=meat]:checked").val();
+      var containsDairy = $(this).find("input:checkbox[name=dairy]:checked").val();
+       if (!containsMeat) {
+         containsMeat = false;
+       }
+       if (!containsDairy) {
+         containsDairy= false;
+       }
+      var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
+      newRecipe.ingredients.push(newIngredient);
+    });
+   recipeBook.recipes.push(newRecipe);
+   console.log(recipeBook);
+  });
 });
