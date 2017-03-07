@@ -69,17 +69,9 @@ RecipeBook.prototype.getRecipe = function(recipeName) {
   return returnRecipe;
 };
 
-var milk = new Ingredient("milk", 1, "cup", false, true);
-var cereal = new Ingredient("cereal", 2, "cup", false, false);
-var cerealRecipe = new Recipe("awesome cereal", "imglink", "make cereal");
-cerealRecipe.ingredients.push(milk);
-cerealRecipe.ingredients.push(cereal);
+
 var week = new MealPlan();
 var recipeBook = new RecipeBook();
-recipeBook.recipes.push(cerealRecipe);
-
-
-
 
 
 // Front-End
@@ -101,6 +93,7 @@ function allowDrop(ev) {
 
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
+  // $(".week-day").css("border", "5px solid green");
 };
 
 function drop(ev) {
@@ -123,7 +116,20 @@ function drop(ev) {
 };
 
 $(function() {
-  var recipeBook = new RecipeBook();
+  function displayRecipes() {
+    $("#recipes").empty();
+    recipeBook.recipes.forEach(function(recipe) {
+      $("#recipes").append("<li id=" + recipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ recipe.displayName + "</li>");
+    });
+  };
+
+  recipeBook.recipes.push(awesomeCereal);
+  recipeBook.recipes.push(chili);
+  recipeBook.recipes.push(frittata);
+  recipeBook.recipes.push(risotto);
+
+  displayRecipes();
+
   $("#add-ingredient").click(function(event){
     event.preventDefault();
     $("#new-ingredient").append("<div class='new-ingredient'>"+
@@ -182,6 +188,6 @@ $(function() {
     });
    recipeBook.recipes.push(newRecipe);
    console.log(recipeBook);
+   displayRecipes();
   });
-  $("#recipes").append("<li id=" + cerealRecipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ cerealRecipe.displayName + "</li>");
 });
