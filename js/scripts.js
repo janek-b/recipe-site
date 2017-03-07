@@ -90,6 +90,47 @@ function drop(ev) {
 }
 
 $(function() {
+  $("#add-ingredient").click(function(event){
+    event.preventDefault();
+    $("#new-ingredient").append("<div class='new-ingredient'>"+
+            "<div class='form-group col-sm-4'>"+
+              "<label for='ingredient-name'>Enter ingredient</label>"+
+              "<input class='ingredient-name form-control' type='text'></div>"+
+            "<div class='form-group col-sm-4'>"+
+              "<label for='quantity'>Enter Quantity</label>"+
+              "<input class='quantity form-control' type='text' placeholder='Example: '3', '0.5''></div>"+
+            "<div class='form-group col-sm-4'>"+
+              "<label for='Unit'>Unit of Measure</label>"+
+              "<select class='form-control unit-of-measure'>"+
+                "<option value='> <br>"+
+                "<option value='each'> each<br>"+
+                "<option value='teaspoon'> teaspoon<br>"+
+                "<option value='tablespoon'> tablespoon<br>"+
+                "<option value='ounces'> ounce<br>"+
+                "<option value='cup'> cup<br>"+
+                "<option value='pounds'> pound <br>"+
+              "</select></div>"+
+            "<div class='meat-or-not'>"+
+              "<p><strong>Does this ingredient contain meat?</strong></p>"+
+              "<div class='radio-inline'>"+
+                "<label><input type='radio' name='meat' value='true' checked>Yes</label></div>"+
+                "<div class='radio-inline'>"+
+                "<label><input type='radio' name='meat' value='false'>No</label></div>"+
+            "</div>"+
+            "<div class='dairy-or-not'>"+
+              "<p><strong>Does this ingredient contain dairy?</strong></p>"+
+              "<div class='radio-inline'>"+
+                "<label><input type='radio' name='dairy' value='true' checked>Yes</label></div>"+
+                "<div class='radio-inline'>"+
+                "<label><input type='radio' name='dairy' value='false'>No</label></div>"+
+            "</div>");
+  });
+
+
+// $("#recipe-form").submit(function(){
+//   //create recipe object, create ingredient objects, insert ingredient objects into recipe object. insert recipe object into recipe book.
+//
+// });
 
 
 
@@ -99,6 +140,6 @@ $(function() {
   $("#testBtn").click(function() {
     var testobject = $("#monday").children().attr("id");
     console.log(recipeBook.getRecipe(testobject));
-  })
+  });
 
-})
+});

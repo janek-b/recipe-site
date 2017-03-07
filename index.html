@@ -21,15 +21,15 @@
 
             <div class="form-group col-sm-4">
               <label for="ingredient-name">Enter ingredient</label>
-              <input id="ingredient-name" class="form-control" type="text">
+              <input class="ingredient-name form-control" type="text">
             </div>
             <div class="form-group col-sm-4">
               <label for="quantity">Enter Quantity</label>
-              <input id="quantity" class="form-control" type="text" placeholder="Example: '3', '0.5'">
+              <input class="quantity form-control" type="text" placeholder="Example: '3', '0.5'">
             </div>
             <div class="form-group col-sm-4">
               <label for="Unit">Unit of Measure</label>
-              <select class='form-control' id='unit-of-measure'>
+              <select class='form-control unit-of-measure'>
                 <option value=""> <br>
                 <option value="each"> each<br>
                 <option value="teaspoon"> teaspoon<br>
@@ -39,7 +39,7 @@
                 <option value="pounds"> pound <br>
               </select>
             </div>
-            <div id="meat-or-not">
+            <div class="meat-or-not">
               <p>
                 <strong>Does this ingredient contain meat?</strong>
               </p>
@@ -56,7 +56,7 @@
                 </label>
               </div>
             </div>
-            <div id="dairy-or-not">
+            <div class="dairy-or-not">
               <p>
                 <strong>Does this ingredient contain dairy?</strong>
               </p>
@@ -72,9 +72,11 @@
                   No
                 </label>
               </div>
+            </div>          
+            <div id="new-ingredient">
+              <!-- this will contain new ingredient form on click   -->
             </div>
             <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
-
           <div class="form-group">
             <label for="meal-image">Add image url for your meal</label>
             <input id="meal-image" class="form-control" type="text">
@@ -89,6 +91,7 @@
 
           <button type="submit" class="btn btn-primary">Add your recipe</button>
         </form>
+
       </div>
     </div>
     <div class="container">

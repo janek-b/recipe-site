@@ -6,12 +6,12 @@
   border: 1px solid black;
 }
 
-#dairy-or-not {
+.dairy-or-not {
   display: inline-block;
   margin-left: 2%;
 }
 
-#meat-or-not {
+.meat-or-not {
   display: inline-block;
   margin-left: 30%;
 }
