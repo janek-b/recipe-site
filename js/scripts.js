@@ -117,6 +117,7 @@ function drop(ev) {
 
 $(function() {
   function displayRecipes() {
+    $("#recipes").empty();
     recipeBook.recipes.forEach(function(recipe) {
       $("#recipes").append("<li id=" + recipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ recipe.displayName + "</li>");
     });
@@ -129,7 +130,6 @@ $(function() {
 
   displayRecipes();
 
-  var recipeBook = new RecipeBook();
   $("#add-ingredient").click(function(event){
     event.preventDefault();
     $("#new-ingredient").append("<div class='new-ingredient'>"+
@@ -187,5 +187,6 @@ $(function() {
     });
    recipeBook.recipes.push(newRecipe);
    console.log(recipeBook);
+   displayRecipes();
   });
 });
