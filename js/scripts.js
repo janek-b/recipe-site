@@ -16,27 +16,48 @@ function Recipe(recipeName, imageURL, instructions) {
 };
 
 function MealPlan() {
-  this.monday = new Day();
-  this.recipes = [];
-}
+  this.weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+  this.days = this.weekDays.map(function(weekDay) {
+    return new Day(weekDay);
+  });
+};
+
+MealPlan.prototype.addRecipe = function(dayBox, recipe) {
+  this.days.forEach(function(dayObj) {
+    if (dayObj.dayName === dayBox) {
+      dayObj.dinner = recipe;
+    };
+  });
+};
+
+MealPlan.prototype.getRecipe = function(dayBox) {
+  var recipe;
+  this.days.forEach(function(dayObj) {
+    if (dayObj.dayName === dayBox) {
+      recipe = dayObj.dinner;
+    };
+  });
+  return recipe;
+};
 
 MealPlan.prototype.getIngredients = function() {
   var shoppingList = [];
   this.recipes.forEach(function(recipe) {
     recipe.ingredients.forEach(function(ingredient) {
       shoppingList.push(ingredient);
-    })
-  })
+    });
+  });
   return shoppingList;
-}
+};
 
-function Day() {
+function Day(dayName) {
+  this.dayName = dayName;
   this.dinner;
-}
+};
 
 function RecipeBook() {
   this.recipes = [];
-}
+};
 
 RecipeBook.prototype.getRecipe = function(recipeName) {
   var returnRecipe;
@@ -55,43 +76,54 @@ cerealRecipe.ingredients.push(milk);
 cerealRecipe.ingredients.push(cereal);
 var week = new MealPlan();
 var recipeBook = new RecipeBook();
-recipeBook.recipes.push(cerealRecipe)
+recipeBook.recipes.push(cerealRecipe);
 
 
 
 
 
 // Front-End
+function updateDays() {
+  week.days.forEach(function(day) {
+    if (day.dinner) {
+      $("#"+day.dayName).empty();
+      $("#"+day.dayName).append("<li id='" + day.dayName + "Dinner' draggable='true' ondragstart='drag(event)'>" + day.dinner.displayName + "</li>");
+    } else {
+      $("#"+day.dayName).empty();
+    };
+  });
+};
+
+
 function allowDrop(ev) {
   ev.preventDefault();
-}
+};
 
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
-}
+};
 
 function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
-  // console.log(data);
-  // console.log(document.getElementById(data).parentElement);
-  if (ev.target.id === "monday") {
-    $("#monday").empty();
-    week.monday.dinner = recipeBook.getRecipe(data);
-    var nodeCopy = document.getElementById(data).cloneNode(true)
-    nodeCopy.id = "testid"
-    ev.target.appendChild(nodeCopy);
-    console.log(week);
-  } else if(document.getElementById(data).parentElement.id != "recipes"){
-    document.getElementById(data).remove();
-    week.monday.dinner = null;
-    console.log(week);
-  }
-}
+  var parent = document.getElementById(data).parentElement;
+  if ((parent.id === "recipes") && $(ev.target).hasClass("week-day")) {
+    week.addRecipe(ev.target.id, recipeBook.getRecipe(data));
+    updateDays();
+  } else if ($(parent).hasClass("week-day") && $(ev.target).hasClass("week-day")) {
+    var recipe = week.getRecipe(parent.id);
+    week.addRecipe(ev.target.id, recipe);
+    week.addRecipe(parent.id, null)
+    updateDays();
+  } else if($(parent).hasClass("week-day")){
+    week.addRecipe(parent.id, null)
+    updateDays();
+  };
+  console.log(week);
+};
 
 $(function() {
   var recipeBook = new RecipeBook();
-
   $("#add-ingredient").click(function(event){
     event.preventDefault();
     $("#new-ingredient").append("<div class='new-ingredient'>"+
@@ -123,54 +155,32 @@ $(function() {
                 "<label><input type='checkbox' name='dairy' value='true'>Yes</label></div>"+
             "</div>");
   });
-
-
-
-$("#user-recipe").click(function(){
-  $("#recipe-form").slideDown();
-});
-
-$("#recipe-form").submit(function(event){
-  //create recipe object, create ingredient objects, insert ingredient objects into recipe object. insert recipe object into recipe book.
-  event.preventDefault();
-  var recipeName = $("input#recipe-name").val();
-  var recipeImage = $("input#meal-image").val();
-  var recipeInstructions = $("input#cooking-instructions").val();
-  var newRecipe = new Recipe(recipeName, recipeImage, recipeInstructions);
-  //loop that makes all the ingredients
-
-  $(".new-ingredient").each(function() {
-    var ingredientName = $(this).find("input.ingredient-name").val();
-    var quantity = parseFloat($(this).find("input.quantity").val());
-    var unit = $(this).find("select.unit-of-measure").val();
-    var containsMeat = $(this).find("input:checkbox[name=meat]:checked").val();
-    var containsDairy = $(this).find("input:checkbox[name=dairy]:checked").val();
-     if (!containsMeat) {
-       containsMeat = false;
-     }
-     if (!containsDairy) {
-       containsDairy= false;
-     }
-
-
-    var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
-    newRecipe.ingredients.push(newIngredient);
+  $("#user-recipe").click(function(){
+    $("#recipe-form").slideDown();
   });
-
- recipeBook.recipes.push(newRecipe);
- console.log(recipeBook);
-
-
-});
-
-
-
+  $("#recipe-form").submit(function(event){
+    event.preventDefault();
+    var recipeName = $("input#recipe-name").val();
+    var recipeImage = $("input#meal-image").val();
+    var recipeInstructions = $("input#cooking-instructions").val();
+    var newRecipe = new Recipe(recipeName, recipeImage, recipeInstructions);
+    $(".new-ingredient").each(function() {
+      var ingredientName = $(this).find("input.ingredient-name").val();
+      var quantity = parseFloat($(this).find("input.quantity").val());
+      var unit = $(this).find("select.unit-of-measure").val();
+      var containsMeat = $(this).find("input:checkbox[name=meat]:checked").val();
+      var containsDairy = $(this).find("input:checkbox[name=dairy]:checked").val();
+       if (!containsMeat) {
+         containsMeat = false;
+       }
+       if (!containsDairy) {
+         containsDairy= false;
+       }
+      var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
+      newRecipe.ingredients.push(newIngredient);
+    });
+   recipeBook.recipes.push(newRecipe);
+   console.log(recipeBook);
+  });
   $("#recipes").append("<li id=" + cerealRecipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ cerealRecipe.displayName + "</li>");
-
-  console.log(week);
-  $("#testBtn").click(function() {
-    var testobject = $("#monday").children().attr("id");
-    console.log(recipeBook.getRecipe(testobject));
-  });
-
 });
