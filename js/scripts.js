@@ -101,6 +101,7 @@ function allowDrop(ev) {
 
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
+  // $(".week-day").css("border", "5px solid green");
 };
 
 function drop(ev) {
