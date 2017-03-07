@@ -6,9 +6,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
-    <title></title>
+    <title>Recipe Site</title>
   </head>
-  <body>
+  <body ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <ul id="recipes">
 
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <h4>monday</h4>
+          <div id="monday">
+          </div>
+          <button id="testBtn" type="button">Click</button>
+          <!-- <div id="remove" ondrop="dropremove(event)" ondragover="allowDrop(event)">
+          </div> -->
+        </div>
+      </div>
+    </div>
   </body>
 </html>
