@@ -16,9 +16,25 @@ function Recipe(recipeName, imageURL, instructions) {
 };
 
 function MealPlan() {
-  this.monday = new Day();
-  this.recipes = [];
+  this.weekDays = ["monday", "tuesday"];
+  this.days = this.weekDays.map(function(weekDay) {
+    return new Day(weekDay);
+  })
+  // this.weekDays.forEach(function(weekDay) {
+  //   day = new Day(weekDay);
+  //   this.days.push(day);
+  // });
+  // this.monday = new Day();
+  // this.recipes = [];
 }
+
+MealPlan.prototype.addRecipe = function(dayBox, recipe) {
+  this.days.forEach(function(dayObj) {
+    if (dayObj.dayName === dayBox) {
+      dayObj.dinner = recipe;
+    };
+  });
+};
 
 MealPlan.prototype.getIngredients = function() {
   var shoppingList = [];
@@ -30,7 +46,8 @@ MealPlan.prototype.getIngredients = function() {
   return shoppingList;
 }
 
-function Day() {
+function Day(dayName) {
+  this.dayName = dayName;
   this.dinner;
 }
 
@@ -62,6 +79,18 @@ recipeBook.recipes.push(cerealRecipe)
 
 
 // Front-End
+function updateDays() {
+  week.days.forEach(function(day) {
+    if (day.dinner) {
+      $("#"+day.dayName).empty();
+      $("#"+day.dayName).append("<li id='" + day.dayName + "Dinner' draggable='true' ondragstart='drag(event)'>" + day.dinner.displayName + "</li>");
+    } else {
+      $("#"+day.dayName).empty();
+    }
+  });
+};
+
+
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -73,27 +102,22 @@ function drag(ev) {
 function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
-  // console.log(data);
-  // console.log(document.getElementById(data).parentElement);
-  if (ev.target.id === "monday") {
-    $("#monday").empty();
-    week.monday.dinner = recipeBook.getRecipe(data);
-    var nodeCopy = document.getElementById(data).cloneNode(true)
-    nodeCopy.id = "testid"
-    ev.target.appendChild(nodeCopy);
+  if ($(ev.target).hasClass("test2")) {
+    week.addRecipe(ev.target.id, recipeBook.getRecipe(data));
+    updateDays();
     console.log(week);
-  } else if(document.getElementById(data).parentElement.id != "recipes"){
-    document.getElementById(data).remove();
-    week.monday.dinner = null;
+  } else if($(document.getElementById(data).parentElement).hasClass("test2")){
+    week.addRecipe(document.getElementById(data).parentElement.id, null)
+    updateDays();
     console.log(week);
   }
 }
 
 $(function() {
-
-
-
   $("#recipes").append("<li id=" + cerealRecipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ cerealRecipe.displayName + "</li>");
+
+
+  // updateDays();
 
   console.log(week);
   $("#testBtn").click(function() {
