@@ -154,6 +154,7 @@ $(function() {
               "<div class='form-group'>"+
                 "<label><input type='checkbox' name='dairy' value='true'>Yes</label></div>"+
             "</div>");
+    $(".new-ingredient").last().hide().slideDown();
   });
   $("#user-recipe").click(function(){
     $("#recipe-form").slideDown();
