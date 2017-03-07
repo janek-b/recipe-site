@@ -6,91 +6,107 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
-    <title></title>
+    <title>Recipe Site</title>
   </head>
-  <body>
-      <div class="container">
-        <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
-            <div class="row">
-              <form id="recipe-form">
-                <div class="form-group">
-                  <label for="recipe-name">Enter your recipe name</label>
-                  <input id="recipe-name" class="form-control" type="text">
-                </div>
-
-
-                  <div class="form-group col-sm-4">
-                    <label for="ingredient-name">Enter ingredient</label>
-                    <input id="ingredient-name" class="form-control" type="text">
-                  </div>
-                  <div class="form-group col-sm-4">
-                    <label for="quantity">Enter Quantity</label>
-                    <input id="quantity" class="form-control" type="text" placeholder="Example: '3', '0.5'">
-                  </div>
-                  <div class="form-group col-sm-4">
-                    <label for="Unit">Unit of Measure</label>
-                    <select class='form-control' id='unit-of-measure'>
-                      <option value=""> <br>
-                      <option value="each"> each<br>
-                      <option value="teaspoon"> teaspoon<br>
-                      <option value="tablespoon"> tablespoon<br>
-                      <option value="ounces"> ounce<br>
-                      <option value="cup"> cup<br>
-                      <option value="pounds"> pound <br>
-                    </select>
-                  </div>
-                  <div id="meat-or-not">
-                    <p>
-                      <strong>Does this ingredient contain meat?</strong>
-                    </p>
-                    <div class="radio-inline">
-                      <label>
-                        <input type="radio" name="meat" value="true" checked>
-                        Yes
-                      </label>
-                    </div>
-                    <div class="radio-inline">
-                      <label>
-                        <input type="radio" name="meat" value="false">
-                        No
-                      </label>
-                    </div>
-                  </div>
-                  <div id="dairy-or-not">
-                    <p>
-                      <strong>Does this ingredient contain dairy?</strong>
-                    </p>
-                    <div class="radio-inline">
-                      <label>
-                        <input type="radio" name="dairy" value="true" checked>
-                        Yes
-                      </label>
-                    </div>
-                    <div class="radio-inline">
-                      <label>
-                        <input type="radio" name="dairy" value="false">
-                        No
-                      </label>
-                    </div>
-                  </div>
-                  <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
-
-                <div class="form-group">
-                  <label for="meal-image">Add image url for your meal</label>
-                  <input id="meal-image" class="form-control" type="text">
-                </div>
-                <div class="form-group">
-                  <p>
-                    <strong>Enter cooking instructions</strong>
-                  </p>
-                  <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
-                </div>
-
-
-                <button type="submit" class="btn btn-primary">Add your recipe</button>
-              </form>
+  <body ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="container">
+      <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
+        <div class="row">
+          <form id="recipe-form">
+            <div class="form-group">
+              <label for="recipe-name">Enter your recipe name</label>
+              <input id="recipe-name" class="form-control" type="text">
             </div>
+
+
+            <div class="form-group col-sm-4">
+              <label for="ingredient-name">Enter ingredient</label>
+              <input id="ingredient-name" class="form-control" type="text">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="quantity">Enter Quantity</label>
+              <input id="quantity" class="form-control" type="text" placeholder="Example: '3', '0.5'">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="Unit">Unit of Measure</label>
+              <select class='form-control' id='unit-of-measure'>
+                <option value=""> <br>
+                <option value="each"> each<br>
+                <option value="teaspoon"> teaspoon<br>
+                <option value="tablespoon"> tablespoon<br>
+                <option value="ounces"> ounce<br>
+                <option value="cup"> cup<br>
+                <option value="pounds"> pound <br>
+              </select>
+            </div>
+            <div id="meat-or-not">
+              <p>
+                <strong>Does this ingredient contain meat?</strong>
+              </p>
+              <div class="radio-inline">
+                <label>
+                  <input type="radio" name="meat" value="true" checked>
+                  Yes
+                </label>
+              </div>
+              <div class="radio-inline">
+                <label>
+                  <input type="radio" name="meat" value="false">
+                  No
+                </label>
+              </div>
+            </div>
+            <div id="dairy-or-not">
+              <p>
+                <strong>Does this ingredient contain dairy?</strong>
+              </p>
+              <div class="radio-inline">
+                <label>
+                  <input type="radio" name="dairy" value="true" checked>
+                  Yes
+                </label>
+              </div>
+              <div class="radio-inline">
+                <label>
+                  <input type="radio" name="dairy" value="false">
+                  No
+                </label>
+              </div>
+            </div>
+            <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
+
+          <div class="form-group">
+            <label for="meal-image">Add image url for your meal</label>
+            <input id="meal-image" class="form-control" type="text">
           </div>
-    </form>
+          <div class="form-group">
+            <p>
+              <strong>Enter cooking instructions</strong>
+            </p>
+            <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
+          </div>
+
+
+          <button type="submit" class="btn btn-primary">Add your recipe</button>
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <ul id="recipes">
+
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <h4>monday</h4>
+          <div id="monday">
+          </div>
+          <button id="testBtn" type="button">Click</button>
+          <!-- <div id="remove" ondrop="dropremove(event)" ondragover="allowDrop(event)">
+          </div> -->
+        </div>
+      </div>
+    </div>
   </body>
 </html>
