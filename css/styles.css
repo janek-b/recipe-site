@@ -6,6 +6,10 @@
   border: 1px solid black;
 }
 
+#recipe-form {
+  display: none;
+}
+
 .dairy-or-not {
   display: inline-block;
   margin-left: 2%;
