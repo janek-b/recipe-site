@@ -42,12 +42,72 @@ MealPlan.prototype.getRecipe = function(dayBox) {
 
 MealPlan.prototype.getIngredients = function() {
   var shoppingList = [];
-  this.recipes.forEach(function(recipe) {
-    recipe.ingredients.forEach(function(ingredient) {
-      shoppingList.push(ingredient);
-    });
+  this.days.forEach(function(day) {
+    if (day.dinner) {
+      day.dinner.ingredients.forEach(function(ingredient) {
+        var index = shoppingList.findIndex(function(item) {
+          return item.ingredientName === ingredient.ingredientName
+        });
+        if (index === -1) {
+          var newIngredient = Object.assign({}, ingredient);
+          shoppingList.push(newIngredient);
+        } else {
+          var newValue = converUnits(shoppingList[index].unit, shoppingList[index].quantity, ingredient.unit, ingredient.quantity);
+
+          shoppingList[index].unit = newValue[0];
+          shoppingList[index].quantity = newValue[1];
+        };
+      });
+    }
   });
+  shoppingList.sort(ingredientSort);
   return shoppingList;
+};
+
+
+function ingredientSort(a, b) {
+  if (a.ingredientName < b.ingredientName) {
+    return -1;
+  } else if (a.ingredientName > b.ingredientName) {
+    return 1;
+  } else {
+    return 0;
+  };
+};
+
+function converUnits(unit1, quantity1, unit2, quantity2) {
+  var weights = ["ounces", "pounds", "teaspoon", "tablespoon", "cup"];
+  var unitIndex1 = weights.indexOf(unit1);
+  var unitIndex2 = weights.indexOf(unit2);
+  var indexDiff = unitIndex1 - unitIndex2;
+  if (indexDiff === 0) {
+    // same unit return sum of quanities
+    return [unit1, (quantity1 + quantity2)];
+  } else if (indexDiff === 2) {
+    // unit2 convert teaspoon to cups
+    return [unit1, (quantity1 + quantity2/48)];
+  } else if (indexDiff === -2) {
+    // unit1 convert teaspoon to cups
+    return [unit2, (quantity2 + quantity1/48)];
+  } else if ((indexDiff === 1) && (unitIndex1 === 1)) {
+    // unit2 convert ounces to pounds
+    return [unit1, (quantity1 + quantity2/16)];
+  } else if ((indexDiff === 1) && (unitIndex1 === 3)) {
+    // unit2 convert teaspoon to tablespoon
+    return [unit1, (quantity1 + quantity2/3)];
+  } else if ((indexDiff === 1) && (unitIndex1 === 4)) {
+    //unit2 convert tablespoon to cups
+    return [unit1, (quantity1 + quantity2/16)];
+  } else if ((indexDiff === -1) && (unitIndex1 === 0)) {
+    //unit1 convert ounces to pounds
+    return [unit2, (quantity2 + quantity1/16)];
+  } else if ((indexDiff === -1) && (unitIndex1 === 2)) {
+    //unit1 convert teaspoon to tablespoon
+    return [unit2, (quantity2 + quantity1/3)];
+  } else if ((indexDiff === -1) && (unitIndex1 === 3)) {
+    //unit1 convert tablespoon to cups
+    return [unit2, (quantity2 + quantity1/16)];
+  };
 };
 
 function Day(dayName) {
@@ -70,13 +130,13 @@ RecipeBook.prototype.getRecipe = function(recipeName) {
 };
 
 
-var week = new MealPlan();
+var mealPlan = new MealPlan();
 var recipeBook = new RecipeBook();
 
 
 // Front-End
 function updateDays() {
-  week.days.forEach(function(day) {
+  mealPlan.days.forEach(function(day) {
     if (day.dinner) {
       $("#"+day.dayName).empty();
       $("#"+day.dayName).append("<li id='" + day.dayName + "Dinner' draggable='true' ondragstart='drag(event)'>" + day.dinner.displayName + "</li>");
@@ -101,18 +161,18 @@ function drop(ev) {
   var data = ev.dataTransfer.getData("text");
   var parent = document.getElementById(data).parentElement;
   if ((parent.id === "recipes") && $(ev.target).hasClass("week-day")) {
-    week.addRecipe(ev.target.id, recipeBook.getRecipe(data));
+    mealPlan.addRecipe(ev.target.id, recipeBook.getRecipe(data));
     updateDays();
   } else if ($(parent).hasClass("week-day") && $(ev.target).hasClass("week-day")) {
-    var recipe = week.getRecipe(parent.id);
-    week.addRecipe(ev.target.id, recipe);
-    week.addRecipe(parent.id, null)
+    var recipe = mealPlan.getRecipe(parent.id);
+    mealPlan.addRecipe(ev.target.id, recipe);
+    mealPlan.addRecipe(parent.id, null)
     updateDays();
   } else if($(parent).hasClass("week-day")){
-    week.addRecipe(parent.id, null)
+    mealPlan.addRecipe(parent.id, null)
     updateDays();
   };
-  console.log(week);
+  console.log(mealPlan);
 };
 
 $(function() {
@@ -148,6 +208,13 @@ $(function() {
   recipeBook.recipes.push(risotto);
 
   displayRecipes();
+
+  $("#shopping-list").click(function() {
+    var shopList = mealPlan.getIngredients();
+    shopList.forEach(function(item) {
+      console.log(item.ingredientName, item.quantity, item.unit);
+    });
+  });
 
   $("#add-ingredient").click(function(event){
     event.preventDefault();
