@@ -47,14 +47,16 @@
         <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
         <form id="recipe-form">
           <div class="row">
-            <div class="form-group">
-              <label for="recipe-name">Enter your recipe name</label>
-              <input id="recipe-name" class="form-control" type="text" required>
+            <div class="col-md-10 col-md-offset-1">
+              <div class="form-group">
+                <label for="recipe-name">Enter your recipe name</label>
+                <input id="recipe-name" class="form-control" type="text" required>
+              </div>
             </div>
           </div>
           <div id="new-ingredient">
             <div class="new-ingredient row">
-              <div class="form-group col-sm-4">
+              <div class="form-group col-sm-4 col-sm-offset-1">
                 <label for="ingredient-name">Enter ingredient</label>
                 <input class="ingredient-name form-control" type="text" required>
               </div>
@@ -74,25 +76,20 @@
                   <option value="pounds"> pound <br>
                 </select>
               </div>
-              <div class="meat-or-not col-sm-2">
+              <div class="form-inline meat-dairy col-sm-2">
                 <p>
-                  <strong>Contains meat?</strong>
+                  <strong>Contains:</strong>
                 </p>
                 <div class="form-group">
                   <label>
                     <input type="checkbox" name="meat" value='true'>
-                    Yes
+                    Meat
                   </label>
                 </div>
-              </div>
-              <div class="dairy-or-not col-sm-2">
-                <p>
-                  <strong>Contain dairy?</strong>
-                </p>
                 <div class="form-group">
                   <label>
                     <input type="checkbox" name="dairy" value='true'>
-                    Yes
+                    Dairy
                   </label>
                 </div>
               </div>
@@ -101,18 +98,20 @@
             </div>
           </div>
           <div class="row">
-            <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
-            <div class="form-group">
-              <label for="meal-image">Add image url for your meal</label>
-              <input id="meal-image" class="form-control" type="text">
+            <div class="col-md-10 col-md-offset-1">
+              <button type="click" id="add-ingredient" class="pull-right btn btn-warning">Add additional ingredient</button>
+              <div class="form-group">
+                <label for="meal-image">Add image url for your meal</label>
+                <input id="meal-image" class="form-control" type="text">
+              </div>
+              <div class="form-group">
+                <p>
+                  <strong>Enter cooking instructions</strong>
+                </p>
+                <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Add your recipe</button>
             </div>
-            <div class="form-group">
-              <p>
-                <strong>Enter cooking instructions</strong>
-              </p>
-              <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Add your recipe</button>
           </div>
         </form>
       </div>
@@ -159,8 +158,12 @@
       </div>
     </div>
 
-    <div class="container-fluid" id="recipes">
-      <hl>
+    <div class="container-fluid">
+      <div class="row" id="recipes">
+        <div class="col-md-10 col-md-offset-1">
+
+        </div>
+      </div>
 
     </div>
 
