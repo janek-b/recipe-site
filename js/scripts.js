@@ -176,16 +176,16 @@ function drop(ev) {
 };
 
 $(function() {
-    var stickyNavTop = $(".dropDownForm").offset().top;
+    var stickyNavTop = $("#thing-thing").offset().top;
 
     var stickyNav = function(){
       var scrollTop = $(window).scrollTop();
       console.log(scrollTop);
 
-      if (scrollTop > (stickyNavTop-20)) {
-          $(".dropDownForm").addClass('sticky');
+      if (scrollTop > (stickyNavTop-30)) {
+          $("#thing-thing").addClass('container sticky');
       } else {
-          $(".dropDownForm").removeClass('sticky');
+          $("#thing-thing").removeClass('container sticky');
       }
     };
 
@@ -249,7 +249,7 @@ $(function() {
     $(".new-ingredient").last().hide().slideDown();
   });
   $("#user-recipe").click(function(){
-    $("#recipe-form").slideDown()
+    $("#recipe-form").slideToggle();
     $(".dropDownForm").css("background-color","grey");
   });
   $("#recipe-form").submit(function(event){

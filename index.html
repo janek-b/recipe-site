@@ -10,69 +10,94 @@
     <title>Recipe Site</title>
   </head>
   <body ondrop="drop(event)" ondragover="allowDrop(event)">
-    <div class="container jumbotron">
-
+    <div class="container-fluid jumbotron">
+      <h1>Meal Planner</h1>
+      <p>Let us help you out</p>
     </div>
     <div class="container how-it-works">
-
-    </div>
-    <div class="container dropDownForm">
-      <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
-      <form id="recipe-form">
-        <div class="row">
-          <div class="form-group">
-            <label for="recipe-name">Enter your recipe name</label>
-            <input id="recipe-name" class="form-control" type="text" required>
-          </div>
+      <div class="row">
+        <h1>Here's how it works</h1>
+        <div class="col-sm-4">
+          <h4>Plan Weekday Meals</h4>
+          <img src="http://www.munchkintime.com/wp-content/plugins/visual-recipe-index/includes/timthumb.php?src=http%3A%2F%2Fwww.munchkintime.com%2Fwp-content%2Fuploads%2F2016%2F12%2FChicken-Stir-Fry-Easy-Dinner-Recipe-Munchkin-Time-40.jpg&h=180&w=180&zc=1&q=100" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
+          </p>
         </div>
-          <div id="new-ingredient">
-            <div class="new-ingredient row">
-            <div class="form-group col-sm-4">
-              <label for="ingredient-name">Enter ingredient</label>
-              <input class="ingredient-name form-control" type="text" required>
-            </div>
-            <div class="form-group col-sm-2">
-              <label for="quantity">Enter Quantity</label>
-              <input class="quantity form-control" type="number" placeholder="Example: 3, 0.5" step="0.1" min="0" required>
-            </div>
-            <div class="form-group col-sm-2">
-              <label for="Unit">Unit of Measure</label>
-              <select class='form-control unit-of-measure' required="">
-                <option value="" disabled selected=""> <br>
-                <option value="each"> each<br>
-                <option value="teaspoon"> teaspoon<br>
-                <option value="tablespoon"> tablespoon<br>
-                <option value="ounces"> ounce<br>
-                <option value="cup"> cup<br>
-                <option value="pounds"> pound <br>
-              </select>
-            </div>
-            <div class="meat-or-not col-sm-2">
-              <p>
-                <strong>Contains meat?</strong>
-              </p>
-              <div class="form-group">
-                <label>
-                  <input type="checkbox" name="meat" value="true">
-                  Yes
-                </label>
-              </div>
-            </div>
-            <div class="dairy-or-not col-sm-2">
-              <p>
-                <strong>Contain dairy?</strong>
-              </p>
-              <div class="form-group">
-                <label>
-                  <input type="checkbox" name="dairy" value="true">
-                  Yes
-                </label>
-              </div>
-            </div>
-
-              <!-- this will contain new ingredient form on click   -->
+        <div class="col-sm-4">
+          <h4>Create and Add Your Own Recipes</h4>
+          <img src="http://www.munchkintime.com/wp-content/plugins/visual-recipe-index/includes/timthumb.php?src=http%3A%2F%2Fwww.munchkintime.com%2Fwp-content%2Fuploads%2F2016%2F12%2FChicken-Stir-Fry-Easy-Dinner-Recipe-Munchkin-Time-40.jpg&h=180&w=180&zc=1&q=100" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <h4>Generate a Shopping List</h4>
+          <img src="http://www.munchkintime.com/wp-content/plugins/visual-recipe-index/includes/timthumb.php?src=http%3A%2F%2Fwww.munchkintime.com%2Fwp-content%2Fuploads%2F2016%2F12%2FChicken-Stir-Fry-Easy-Dinner-Recipe-Munchkin-Time-40.jpg&h=180&w=180&zc=1&q=100" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="thing-thing">
+      <div class="container dropDownForm">
+        <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
+        <form id="recipe-form">
+          <div class="row">
+            <div class="form-group">
+              <label for="recipe-name">Enter your recipe name</label>
+              <input id="recipe-name" class="form-control" type="text" required>
             </div>
           </div>
+            <div id="new-ingredient">
+              <div class="new-ingredient row">
+              <div class="form-group col-sm-4">
+                <label for="ingredient-name">Enter ingredient</label>
+                <input class="ingredient-name form-control" type="text" required>
+              </div>
+              <div class="form-group col-sm-2">
+                <label for="quantity">Enter Quantity</label>
+                <input class="quantity form-control" type="number" placeholder="Example: 3, 0.5" step="0.1" min="0" required>
+              </div>
+              <div class="form-group col-sm-2">
+                <label for="Unit">Unit of Measure</label>
+                <select class='form-control unit-of-measure' required="">
+                  <option value="" disabled selected=""> <br>
+                  <option value="each"> each<br>
+                  <option value="teaspoon"> teaspoon<br>
+                  <option value="tablespoon"> tablespoon<br>
+                  <option value="ounces"> ounce<br>
+                  <option value="cup"> cup<br>
+                  <option value="pounds"> pound <br>
+                </select>
+              </div>
+              <div class="meat-or-not col-sm-2">
+                <p>
+                  <strong>Contains meat?</strong>
+                </p>
+                <div class="form-group">
+                  <label>
+                    <input type="checkbox" name="meat" value="true">
+                    Yes
+                  </label>
+                </div>
+              </div>
+              <div class="dairy-or-not col-sm-2">
+                <p>
+                  <strong>Contain dairy?</strong>
+                </p>
+                <div class="form-group">
+                  <label>
+                    <input type="checkbox" name="dairy" value="true">
+                    Yes
+                  </label>
+                </div>
+              </div>
+
+                <!-- this will contain new ingredient form on click   -->
+              </div>
+            </div>
 
 
           <div class="row">
@@ -87,39 +112,39 @@
               </p>
               <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
             </div>
-
             <button type="submit" class="btn btn-primary">Add your recipe</button>
           </div>
         </form>
 
-      <div class="row planner">
-        <div class="col-md-2 col-md-offset-1">
-          <h4>Monday</h4>
-          <div class="week-day" id="monday">
+        <div class="row planner">
+          <div class="col-md-2 col-md-offset-1">
+            <h4>Monday</h4>
+            <div class="week-day" id="monday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Tuesday</h4>
-          <div class="week-day" id="tuesday">
+          <div class="col-md-2">
+            <h4>Tuesday</h4>
+            <div class="week-day" id="tuesday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Wednesday</h4>
-          <div class="week-day" id="wednesday">
+          <div class="col-md-2">
+            <h4>Wednesday</h4>
+            <div class="week-day" id="wednesday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Thursday</h4>
-          <div class="week-day" id="thursday">
+          <div class="col-md-2">
+            <h4>Thursday</h4>
+            <div class="week-day" id="thursday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Friday</h4>
-          <div class="week-day" id="friday">
+          <div class="col-md-2">
+            <h4>Friday</h4>
+            <div class="week-day" id="friday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-1">
-          <button id="shopping-list" type="button" class="btn btn-primary">Generate List</button>
+          <div class="col-md-1">
+            <button id="shopping-list" type="button" class="btn btn-primary">Generate List</button>
+          </div>
         </div>
       </div>
     </div>
@@ -131,12 +156,17 @@
           </ul>
         </div>
       </div>
-
-      <div class="jumbotron">
-        <h1> slide under</h1>
-      </div>
-
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
     </div>
-
+    <div class="container-fluid">
+      <h1> slide under</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
   </body>
 </html>
