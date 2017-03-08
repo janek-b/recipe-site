@@ -175,12 +175,27 @@ function updateDays() {
   mealPlan.days.forEach(function(day) {
     if (day.dinner) {
       $("#"+day.dayName).empty();
-      $("#"+day.dayName).append("<li id='" + day.dayName + "Dinner' draggable='true' ondragstart='drag(event)'>" + day.dinner.displayName + "</li>");
+      $("#"+day.dayName).append("<img id='" + day.dayName + "Dinner' draggable='true' ondragstart='drag(event)' src='"+day.dinner.imageURL+"' class='img-responsive'>");
+      $("#"+day.dayName).find("img").click(function() {
+        populateRecipeDetails(day.dinner);
+      });
     } else {
       $("#"+day.dayName).empty();
     };
   });
 };
+
+function populateRecipeDetails(recipe) {
+  console.log(recipe.recipeName);
+  $("#recipe-details-name").text(recipe.displayName);
+  $("#recipe-details-image").html("<img src='"+recipe.imageURL+"' class='img-responsive'>");
+  $("#recipe-details-ingredients").empty();
+  recipe.ingredients.forEach(function(ingredient) {
+    $("#recipe-details-ingredients").append("<li><span class='ingredient-quantity'>"+ingredient.quantity + "</span><span class='ingredient-unit'> " + ingredient.unit + "</span><span class='ingredient-name'> " + ingredient.ingredientName + "</span></li>");
+  });
+  $("#recipe-details-instructions").text(recipe.instructions);
+  $("#recipe-details-modal").modal();
+}
 
 
 function allowDrop(ev) {
@@ -212,19 +227,19 @@ function drop(ev) {
 };
 
 $(function() {
-
   function displayRecipes() {
     var allrecipes = recipeBook.filter($("#filter-food").val());
     console.log(allrecipes);
     $("#recipes").empty();
-    // recipeBook.recipes.forEach(function(recipe) {
-    //   $("#recipes").append("<li id=" + recipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ recipe.displayName + "</li>");
-    // });
     for (var i = 0; i < allrecipes.length; i++) {
       if (i % 6 === 0) {
         $("#recipes").append("<div class='row'></div>")
       }
-      $("#recipes").children().last().append("<div class='col-md-2'><img id='"+allrecipes[i].recipeName +"' draggable='true' ondragstart='drag(event)' src='"+allrecipes[i].imageURL+"' class='img-responsive'></div>");
+      var recipe = allrecipes[i];
+      $("#recipes > div").last().append("<div class='col-md-2'><img id='"+recipe.recipeName +"' draggable='true' ondragstart='drag(event)' src='"+recipe.imageURL+"' class='img-responsive'></div>");
+      $("#recipes").find("img").last().click(function() {
+        populateRecipeDetails(recipeBook.getRecipe($(this).attr('id')));
+      });
     };
   };
 
@@ -232,19 +247,21 @@ $(function() {
     console.log("changed");
     displayRecipes();
   });
+  recipeBook.recipes.push(awesomeCereal);
+  recipeBook.recipes.push(chili);
+  recipeBook.recipes.push(frittata);
+  recipeBook.recipes.push(risotto);
 
+  displayRecipes();
 
-  // get length of recipeBook.recipes
-  // every 6 create a new row
-  // insert recipe as picture into col-md-2
-
-
-  // recipeBook.recipes.push(awesomeCereal);
-  // recipeBook.recipes.push(chili);
-  // recipeBook.recipes.push(frittata);
-  //recipeBook.push(risotto);
-
-
+  $("#shopping-list").click(function() {
+    var shopList = mealPlan.getIngredients();
+    $("#ingredientListModal").empty();
+    shopList.forEach(function(item) {
+      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
+        item.quantity + " " + item.unit + "</li>");
+    });
+  });
   $("#add-ingredient").click(function(event){
     event.preventDefault();
     $("#new-ingredient").append("<div class='new-ingredient row'>"+

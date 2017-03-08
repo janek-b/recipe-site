@@ -163,25 +163,52 @@
       <hl>
 
     </div>
-    <!-- Modal -->
-<div id="shoppingListModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Shopping List</h4>
+    <div class="container-fluid">
+
+      <div id="recipe-details-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="recipe-details-name"></h4>
+            </div>
+            <div class="modal-body">
+              <div id="recipe-details-image">
+              </div>
+              <div>
+                <ul id="recipe-details-ingredients"></ul>
+              </div>
+              <div>
+                <p id="recipe-details-instructions"></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <ul id="ingredientListModal"></ul>
+
+
+      <div id="shoppingListModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Shopping List</h4>
+            </div>
+            <div class="modal-body">
+              <ul id="ingredientListModal"></ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+
     </div>
-
-  </div>
-</div>
   </body>
 </html>
