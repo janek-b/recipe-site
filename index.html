@@ -145,7 +145,7 @@
             </div>
           </div>
           <div class="col-md-1">
-            <button id="shopping-list" type="button" class="btn btn-primary">Generate List</button>
+            <button id="shopping-list" type="button" class="btn btn-primary" data-toggle="modal" data-target="#shoppingListModal">Generate List</button>
           </div>
         </div>
       </div>
@@ -155,5 +155,25 @@
       <hl>
 
     </div>
+    <!-- Modal -->
+<div id="shoppingListModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Shopping List</h4>
+      </div>
+      <div class="modal-body">
+        <ul id="ingredientListModal"></ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
   </body>
 </html>
