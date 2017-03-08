@@ -15,6 +15,26 @@ function Recipe(recipeName, imageURL, instructions) {
   this.instructions = instructions;
 };
 
+Recipe.prototype.containsNoMeat = function () {
+  var result = true;
+  this.ingredients.forEach(function(ingredient){
+    if (ingredient.meat){
+      result = false;
+    }
+  });
+  return result;
+};
+
+Recipe.prototype.containsNoDairy = function () {
+  var result = true;
+  this.ingredients.forEach(function(ingredient){
+    if (ingredient.dairy){
+      result = false;
+    }
+  });
+  return result;
+};
+
 function MealPlan() {
   this.weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   this.days = this.weekDays.map(function(weekDay) {
@@ -119,6 +139,22 @@ function RecipeBook() {
   this.recipes = [];
 };
 
+RecipeBook.prototype.filter = function (foodFilter) {
+  console.log(foodFilter);
+  if (foodFilter ==="meatFree") {
+    return this.recipes.filter(function(recipe){
+      console.log(recipe.containsNoMeat());
+      return recipe.containsNoMeat();
+    });
+  } else if (foodFilter ==="dairyFree") {
+    return this.recipes.filter(function(recipe){
+      return recipe.containsNoDairy();
+    });
+  } else {
+    return this.recipes;
+  }
+};
+
 RecipeBook.prototype.getRecipe = function(recipeName) {
   var returnRecipe;
   this.recipes.forEach(function(recipe) {
@@ -178,27 +214,35 @@ function drop(ev) {
 $(function() {
 
   function displayRecipes() {
+    var allrecipes = recipeBook.filter($("#filter-food").val());
+    console.log(allrecipes);
     $("#recipes").empty();
     // recipeBook.recipes.forEach(function(recipe) {
     //   $("#recipes").append("<li id=" + recipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ recipe.displayName + "</li>");
     // });
-    for (var i = 0; i < recipeBook.recipes.length; i++) {
+    for (var i = 0; i < allrecipes.length; i++) {
       if (i % 6 === 0) {
         $("#recipes").append("<div class='row'></div>")
       }
-      $("#recipes").children().last().append("<div class='col-md-2'><img id='"+recipeBook.recipes[i].recipeName +"' draggable='true' ondragstart='drag(event)' src='"+recipeBook.recipes[i].imageURL+"' class='img-responsive'></div>");
+      $("#recipes").children().last().append("<div class='col-md-2'><img id='"+allrecipes[i].recipeName +"' draggable='true' ondragstart='drag(event)' src='"+allrecipes[i].imageURL+"' class='img-responsive'></div>");
     };
   };
+
+  $("#filter-food").change(function(){
+    console.log("changed");
+    displayRecipes();
+  });
+
 
   // get length of recipeBook.recipes
   // every 6 create a new row
   // insert recipe as picture into col-md-2
 
 
-  recipeBook.recipes.push(awesomeCereal);
-  recipeBook.recipes.push(chili);
-  recipeBook.recipes.push(frittata);
-  recipeBook.recipes.push(risotto);
+  // recipeBook.recipes.push(awesomeCereal);
+  // recipeBook.recipes.push(chili);
+  // recipeBook.recipes.push(frittata);
+  // recipeBook.recipes.push(risotto);
 
   displayRecipes();
 
@@ -208,7 +252,7 @@ $(function() {
     shopList.forEach(function(item) {
       $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
         item.quantity + " " + item.unit + "</li>");
-    });  
+    });
   });
 
 
@@ -260,14 +304,15 @@ $(function() {
       var ingredientName = $(this).find("input.ingredient-name").val();
       var quantity = parseFloat($(this).find("input.quantity").val());
       var unit = $(this).find("select.unit-of-measure").val();
-      var containsMeat = $(this).find("input:checkbox[name=meat]:checked").val();
-      var containsDairy = $(this).find("input:checkbox[name=dairy]:checked").val();
-      if (!containsMeat) {
-        containsMeat = false;
-      }
-      if (!containsDairy) {
-        containsDairy= false;
-      }
+      var containsMeat = Boolean(
+      $(this).find("input:checkbox[name=meat]:checked").val());
+      var containsDairy = Boolean( $(this).find("input:checkbox[name=dairy]:checked").val());
+      // if (!containsMeat) {
+      //   containsMeat = false;
+      // }
+      // if (!containsDairy) {
+      //   containsDairy= false;
+      // }
       var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
       newRecipe.ingredients.push(newIngredient);
     });

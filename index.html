@@ -80,7 +80,7 @@
                 </p>
                 <div class="form-group">
                   <label>
-                    <input type="checkbox" name="meat" value="true">
+                    <input type="checkbox" name="meat" value=true>
                     Yes
                   </label>
                 </div>
@@ -91,7 +91,7 @@
                 </p>
                 <div class="form-group">
                   <label>
-                    <input type="checkbox" name="dairy" value="true">
+                    <input type="checkbox" name="dairy" value=true>
                     Yes
                   </label>
                 </div>
@@ -146,6 +146,14 @@
           </div>
           <div class="col-md-1">
             <button id="shopping-list" type="button" class="btn btn-primary" data-toggle="modal" data-target="#shoppingListModal">Generate List</button>
+            <div class="form-control">
+              <select id="filter-food">
+                <h3>Recipe Types</h3>
+                <option value="all" selected=""> All <br>
+                <option value="meatFree"> Meat Free <br>
+                <option value="dairyFree"> Dairy Free<br>
+              </select>
+            </div>
           </div>
         </div>
       </div>
