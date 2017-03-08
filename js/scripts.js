@@ -233,14 +233,19 @@ function drop(ev) {
 $(function() {
   function displayRecipes() {
     var allrecipes = recipeBook.filter($("#filter-food").val());
-    $("#recipes").empty();
+    $("#recipes > div").empty();
     for (var i = 0; i < allrecipes.length; i++) {
-      if (i % 6 === 0) {
-        $("#recipes").append("<div class='row'></div>")
-      }
+      // if (i % 6 === 0) {
+      //   $("#recipes").append("<div class='row'></div>")
+      // }
       var recipe = allrecipes[i];
-      $("#recipes > div").last().append("<div class='col-md-2'><img id='"+recipe.recipeName +"' draggable='true' ondragstart='drag(event)' src='"+recipe.imageURL+"' class='img-responsive'></div>");
-      $("#recipes").find("img").last().click(function() {
+      $("#recipes > div").last().append("<div class='recipe-container'>"+
+        "<img src='"+recipe.imageURL+"' class='recipe-img'>"+
+        "<div id='"+recipe.recipeName +"' draggable='true' ondragstart='drag(event)' class='recipe-hover'>"+
+        "<div class='hover-text'>" + recipe.displayName + "</div>" +
+        "</div>"+
+        "</div>");
+      $("#recipes").find(".recipe-hover").last().click(function() {
         populateRecipeDetails(recipeBook.getRecipe($(this).attr('id')));
       });
     };
@@ -279,7 +284,7 @@ $(function() {
   $("#add-ingredient").click(function(event){
     event.preventDefault();
     $("#new-ingredient").append("<div class='new-ingredient row'>"+
-            "<div class='form-group col-sm-4'>"+
+            "<div class='form-group col-sm-4 col-sm-offset-1'>"+
               "<label for='ingredient-name'>Enter ingredient</label>"+
               "<input class='ingredient-name form-control' type='text' required></div>"+
             "<div class='form-group col-sm-2'>"+
@@ -296,16 +301,14 @@ $(function() {
                 "<option value='cup'> cup<br>"+
                 "<option value='pounds'> pound <br>"+
               "</select></div>"+
-            "<div class='meat-or-not  col-sm-2'>"+
-              "<p><strong>Contains meat?</strong></p>"+
+            "<div class='form-inline meat-dairy col-sm-2'>"+
+              "<p><strong>Contains:</strong></p>"+
               "<div class='form-group'>"+
-                "<label><input type='checkbox' name='meat' value='true'> Yes</label></div>"+
+                "<label><input type='checkbox' name='meat' value='true'> Meat</label></div>"+
+              "<div class='form-group'>"+
+                "<label><input type='checkbox' name='dairy' value='true'> Dairy</label></div>"+
             "</div>"+
-            "<div class='dairy-or-not  col-sm-2'>"+
-              "<p><strong>Contains dairy?</strong></p>"+
-              "<div class='form-group'>"+
-                "<label><input type='checkbox' name='dairy' value='true'> Yes</label></div>"+
-            "</div>");
+          "</div>");
     $(".new-ingredient").last().hide().slideDown();
   });
 
