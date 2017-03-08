@@ -160,7 +160,7 @@ function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   var parent = document.getElementById(data).parentElement;
-  if ((parent.id === "recipes") && $(ev.target).hasClass("week-day")) {
+  if ((parent.parentElement.parentElement.id === "recipes") && $(ev.target).hasClass("week-day")) {
     mealPlan.addRecipe(ev.target.id, recipeBook.getRecipe(data));
     updateDays();
   } else if ($(parent).hasClass("week-day") && $(ev.target).hasClass("week-day")) {
@@ -176,31 +176,42 @@ function drop(ev) {
 };
 
 $(function() {
-    var stickyNavTop = $(".dropDownForm").offset().top;
-
-    var stickyNav = function(){
-      var scrollTop = $(window).scrollTop();
-      console.log(scrollTop);
-
-      if (scrollTop > (stickyNavTop-20)) {
-          $(".dropDownForm").addClass('sticky');
-      } else {
-          $(".dropDownForm").removeClass('sticky');
-      }
-    };
-
-    // stickyNav();
-
-    $(window).scroll(function() {
-      stickyNav();
-    });
+    // var stickyNavTop = $(".dropDownForm").offset().top;
+    //
+    // var stickyNav = function(){
+    //   var scrollTop = $(window).scrollTop();
+    //   console.log(scrollTop);
+    //
+    //   if (scrollTop > (stickyNavTop-20)) {
+    //       $(".dropDownForm").addClass('sticky');
+    //   } else {
+    //       $(".dropDownForm").removeClass('sticky');
+    //   }
+    // };
+    //
+    // // stickyNav();
+    //
+    // $(window).scroll(function() {
+    //   stickyNav();
+    // });
 
   function displayRecipes() {
     $("#recipes").empty();
-    recipeBook.recipes.forEach(function(recipe) {
-      $("#recipes").append("<li id=" + recipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ recipe.displayName + "</li>");
-    });
+    // recipeBook.recipes.forEach(function(recipe) {
+    //   $("#recipes").append("<li id=" + recipe.recipeName + " draggable='true' ondragstart='drag(event)'>"+ recipe.displayName + "</li>");
+    // });
+    for (var i = 0; i < recipeBook.recipes.length; i++) {
+      if (i % 6 === 0) {
+        $("#recipes").append("<div class='row'></div>")
+      }
+      $("#recipes").children().last().append("<div class='col-md-2'><img id='"+recipeBook.recipes[i].recipeName +"' draggable='true' ondragstart='drag(event)' src='"+recipeBook.recipes[i].imageURL+"' class='img-responsive'></div>");
+    };
   };
+
+  // get length of recipeBook.recipes
+  // every 6 create a new row
+  // insert recipe as picture into col-md-2
+
 
   recipeBook.recipes.push(awesomeCereal);
   recipeBook.recipes.push(chili);
@@ -249,8 +260,8 @@ $(function() {
     $(".new-ingredient").last().hide().slideDown();
   });
   $("#user-recipe").click(function(){
-    $("#recipe-form").slideDown()
-    $(".dropDownForm").css("background-color","grey");
+    $("#recipe-form").slideToggle()
+    // $(".dropDownForm").css("background-color","grey");
   });
   $("#recipe-form").submit(function(event){
     event.preventDefault();
@@ -264,20 +275,20 @@ $(function() {
       var unit = $(this).find("select.unit-of-measure").val();
       var containsMeat = $(this).find("input:checkbox[name=meat]:checked").val();
       var containsDairy = $(this).find("input:checkbox[name=dairy]:checked").val();
-       if (!containsMeat) {
-         containsMeat = false;
-       }
-       if (!containsDairy) {
-         containsDairy= false;
-       }
+      if (!containsMeat) {
+        containsMeat = false;
+      }
+      if (!containsDairy) {
+        containsDairy= false;
+      }
       var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
       newRecipe.ingredients.push(newIngredient);
     });
-   recipeBook.recipes.push(newRecipe);
-   console.log(recipeBook);
-   displayRecipes();
-   $("#recipe-form").slideUp();
-   $(".dropDownForm").css("background-color","");
-   $("#recipe-form").trigger("reset");
+    recipeBook.recipes.push(newRecipe);
+    console.log(recipeBook);
+    displayRecipes();
+    $("#recipe-form").slideUp();
+    $(".dropDownForm").css("background-color","");
+    $("#recipe-form").trigger("reset");
   });
 });
