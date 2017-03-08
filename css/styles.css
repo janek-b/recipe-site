@@ -18,6 +18,14 @@ html,body{
   top: 253px;
 }
 
+.header-bg {
+  background-color: rgb(149, 221, 232);
+}
+
+#meal-planner-container {
+  background-color: rgb(210, 210, 210);
+}
+
 .week-day {
   width: 180px;
   height: 180px;
@@ -30,6 +38,8 @@ html,body{
 
 #recipe-form {
   display: none;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .dairy-or-not {

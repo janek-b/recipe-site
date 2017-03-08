@@ -249,8 +249,8 @@ $(function() {
     $(".new-ingredient").last().hide().slideDown();
   });
   $("#user-recipe").click(function(){
-    $("#recipe-form").slideDown()
-    $(".dropDownForm").css("background-color","grey");
+    $("#recipe-form").slideToggle()
+    // $(".dropDownForm").css("background-color","grey");
   });
   $("#recipe-form").submit(function(event){
     event.preventDefault();
@@ -264,20 +264,20 @@ $(function() {
       var unit = $(this).find("select.unit-of-measure").val();
       var containsMeat = $(this).find("input:checkbox[name=meat]:checked").val();
       var containsDairy = $(this).find("input:checkbox[name=dairy]:checked").val();
-       if (!containsMeat) {
-         containsMeat = false;
-       }
-       if (!containsDairy) {
-         containsDairy= false;
-       }
+      if (!containsMeat) {
+        containsMeat = false;
+      }
+      if (!containsDairy) {
+        containsDairy= false;
+      }
       var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
       newRecipe.ingredients.push(newIngredient);
     });
-   recipeBook.recipes.push(newRecipe);
-   console.log(recipeBook);
-   displayRecipes();
-   $("#recipe-form").slideUp();
-   $(".dropDownForm").css("background-color","");
-   $("#recipe-form").trigger("reset");
+    recipeBook.recipes.push(newRecipe);
+    console.log(recipeBook);
+    displayRecipes();
+    $("#recipe-form").slideUp();
+    $(".dropDownForm").css("background-color","");
+    $("#recipe-form").trigger("reset");
   });
 });
