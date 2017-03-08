@@ -204,9 +204,10 @@ $(function() {
 
   $("#shopping-list").click(function() {
     var shopList = mealPlan.getIngredients();
+    $("#ingredientListModal").empty();
     shopList.forEach(function(item) {
       $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
-        item.quantity + ", " + item.unit + "</li>");
+        item.quantity + " " + item.unit + "</li>");
     });
   });
 
@@ -273,5 +274,7 @@ $(function() {
     $("#recipe-form").slideUp();
     $(".dropDownForm").css("background-color","");
     $("#recipe-form").trigger("reset");
+
+
   });
 });

@@ -105,3 +105,9 @@ img {
 #recipes {
   margin-top: 30px;
 }
+
+.modal {
+  position: fixed;
+  top: 25%;
+  z-index: 9999 !important;
+}
