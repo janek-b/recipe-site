@@ -49,11 +49,13 @@ MealPlan.prototype.getIngredients = function() {
           return item.ingredientName === ingredient.ingredientName
         });
         if (index === -1) {
-          shoppingList.push(ingredient);
-        } else if (shoppingList[index].unit === ingredient.unit){
-          shoppingList[index].quantity += ingredient.quantity;
+          var newIngredient = Object.assign({}, ingredient);
+          shoppingList.push(newIngredient);
         } else {
-          shoppingList.push(ingredient);
+          var newValue = converUnits(shoppingList[index].unit, shoppingList[index].quantity, ingredient.unit, ingredient.quantity);
+
+          shoppingList[index].unit = newValue[0];
+          shoppingList[index].quantity = newValue[1];
         };
       });
     }
@@ -73,6 +75,40 @@ function ingredientSort(a, b) {
   };
 };
 
+function converUnits(unit1, quantity1, unit2, quantity2) {
+  var weights = ["ounces", "pounds", "teaspoon", "tablespoon", "cup"];
+  var unitIndex1 = weights.indexOf(unit1);
+  var unitIndex2 = weights.indexOf(unit2);
+  var indexDiff = unitIndex1 - unitIndex2;
+  if (indexDiff === 0) {
+    // same unit return sum of quanities
+    return [unit1, (quantity1 + quantity2)];
+  } else if (indexDiff === 2) {
+    // unit2 convert teaspoon to cups
+    return [unit1, (quantity1 + quantity2/48)];
+  } else if (indexDiff === -2) {
+    // unit1 convert teaspoon to cups
+    return [unit2, (quantity2 + quantity1/48)];
+  } else if ((indexDiff === 1) && (unitIndex1 === 1)) {
+    // unit2 convert ounces to pounds
+    return [unit1, (quantity1 + quantity2/16)];
+  } else if ((indexDiff === 1) && (unitIndex1 === 3)) {
+    // unit2 convert teaspoon to tablespoon
+    return [unit1, (quantity1 + quantity2/3)];
+  } else if ((indexDiff === 1) && (unitIndex1 === 4)) {
+    //unit2 convert tablespoon to cups
+    return [unit1, (quantity1 + quantity2/16)];
+  } else if ((indexDiff === -1) && (unitIndex1 === 0)) {
+    //unit1 convert ounces to pounds
+    return [unit2, (quantity2 + quantity1/16)];
+  } else if ((indexDiff === -1) && (unitIndex1 === 2)) {
+    //unit1 convert teaspoon to tablespoon
+    return [unit2, (quantity2 + quantity1/3)];
+  } else if ((indexDiff === -1) && (unitIndex1 === 3)) {
+    //unit1 convert tablespoon to cups
+    return [unit2, (quantity2 + quantity1/16)];
+  };
+};
 
 function Day(dayName) {
   this.dayName = dayName;
@@ -156,7 +192,6 @@ $(function() {
 
   $("#shopping-list").click(function() {
     var shopList = mealPlan.getIngredients();
-    // console.log(shopList);
     shopList.forEach(function(item) {
       console.log(item.ingredientName, item.quantity, item.unit);
     });
