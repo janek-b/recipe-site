@@ -1,5 +1,21 @@
 html,body{
   height:2000px;
+  position: relative;
+}
+
+.affix {
+  top: 0;
+  width: 100%;
+  z-index: 9999 !important;
+}
+
+.dropDownForm {
+  margin-bottom: 0px;
+}
+
+.affix ~ .container-fluid {
+  position: relative;
+  top: 253px;
 }
 
 .week-day {

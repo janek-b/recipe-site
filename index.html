@@ -9,72 +9,74 @@
     <script src="recipes.json"></script>
     <title>Recipe Site</title>
   </head>
-  <body ondrop="drop(event)" ondragover="allowDrop(event)">
-    <div class="container jumbotron">
+  <body data-spy="scroll" data-target=".dropDownForm" data-offset="126" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="container-fluid">
+      <div class="jumbotron">
+
+      </div>
+    </div>
+    <div class="container-fluid how-it-works">
 
     </div>
-    <div class="container how-it-works">
+    <div class="dropDownForm" data-spy="affix" data-offset-top="126">
 
-    </div>
-    <div class="container dropDownForm">
-      <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
-      <form id="recipe-form">
-        <div class="row">
-          <div class="form-group">
-            <label for="recipe-name">Enter your recipe name</label>
-            <input id="recipe-name" class="form-control" type="text" required>
+      <div class="container-fluid">
+        <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
+        <form id="recipe-form">
+          <div class="row">
+            <div class="form-group">
+              <label for="recipe-name">Enter your recipe name</label>
+              <input id="recipe-name" class="form-control" type="text" required>
+            </div>
           </div>
-        </div>
           <div id="new-ingredient">
             <div class="new-ingredient row">
-            <div class="form-group col-sm-4">
-              <label for="ingredient-name">Enter ingredient</label>
-              <input class="ingredient-name form-control" type="text" required>
-            </div>
-            <div class="form-group col-sm-2">
-              <label for="quantity">Enter Quantity</label>
-              <input class="quantity form-control" type="number" placeholder="Example: 3, 0.5" step="0.1" min="0" required>
-            </div>
-            <div class="form-group col-sm-2">
-              <label for="Unit">Unit of Measure</label>
-              <select class='form-control unit-of-measure' required="">
-                <option value="" disabled selected=""> <br>
-                <option value="each"> each<br>
-                <option value="teaspoon"> teaspoon<br>
-                <option value="tablespoon"> tablespoon<br>
-                <option value="ounces"> ounce<br>
-                <option value="cup"> cup<br>
-                <option value="pounds"> pound <br>
-              </select>
-            </div>
-            <div class="meat-or-not col-sm-2">
-              <p>
-                <strong>Contains meat?</strong>
-              </p>
-              <div class="form-group">
-                <label>
-                  <input type="checkbox" name="meat" value="true">
-                  Yes
-                </label>
+              <div class="form-group col-sm-4">
+                <label for="ingredient-name">Enter ingredient</label>
+                <input class="ingredient-name form-control" type="text" required>
               </div>
-            </div>
-            <div class="dairy-or-not col-sm-2">
-              <p>
-                <strong>Contain dairy?</strong>
-              </p>
-              <div class="form-group">
-                <label>
-                  <input type="checkbox" name="dairy" value="true">
-                  Yes
-                </label>
+              <div class="form-group col-sm-2">
+                <label for="quantity">Enter Quantity</label>
+                <input class="quantity form-control" type="number" placeholder="Example: 3, 0.5" step="0.1" min="0" required>
               </div>
-            </div>
+              <div class="form-group col-sm-2">
+                <label for="Unit">Unit of Measure</label>
+                <select class='form-control unit-of-measure' required="">
+                  <option value="" disabled selected=""> <br>
+                  <option value="each"> each<br>
+                  <option value="teaspoon"> teaspoon<br>
+                  <option value="tablespoon"> tablespoon<br>
+                  <option value="ounces"> ounce<br>
+                  <option value="cup"> cup<br>
+                  <option value="pounds"> pound <br>
+                </select>
+              </div>
+              <div class="meat-or-not col-sm-2">
+                <p>
+                  <strong>Contains meat?</strong>
+                </p>
+                <div class="form-group">
+                  <label>
+                    <input type="checkbox" name="meat" value="true">
+                    Yes
+                  </label>
+                </div>
+              </div>
+              <div class="dairy-or-not col-sm-2">
+                <p>
+                  <strong>Contain dairy?</strong>
+                </p>
+                <div class="form-group">
+                  <label>
+                    <input type="checkbox" name="dairy" value="true">
+                    Yes
+                  </label>
+                </div>
+              </div>
 
               <!-- this will contain new ingredient form on click   -->
             </div>
           </div>
-
-
           <div class="row">
             <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
             <div class="form-group">
@@ -92,38 +94,40 @@
           </div>
         </form>
 
-      <div class="row planner">
-        <div class="col-md-2 col-md-offset-1">
-          <h4>Monday</h4>
-          <div class="week-day" id="monday">
+        <div class="row planner">
+          <div class="col-md-2 col-md-offset-1">
+            <h4>Monday</h4>
+            <div class="week-day" id="monday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Tuesday</h4>
-          <div class="week-day" id="tuesday">
+          <div class="col-md-2">
+            <h4>Tuesday</h4>
+            <div class="week-day" id="tuesday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Wednesday</h4>
-          <div class="week-day" id="wednesday">
+          <div class="col-md-2">
+            <h4>Wednesday</h4>
+            <div class="week-day" id="wednesday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Thursday</h4>
-          <div class="week-day" id="thursday">
+          <div class="col-md-2">
+            <h4>Thursday</h4>
+            <div class="week-day" id="thursday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <h4>Friday</h4>
-          <div class="week-day" id="friday">
+          <div class="col-md-2">
+            <h4>Friday</h4>
+            <div class="week-day" id="friday">
+            </div>
           </div>
-        </div>
-        <div class="col-md-1">
-          <button id="shopping-list" type="button" class="btn btn-primary">Generate List</button>
+          <div class="col-md-1">
+            <button id="shopping-list" type="button" class="btn btn-primary">Generate List</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="container">
+
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
           <ul id="recipes">
