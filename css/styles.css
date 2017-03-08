@@ -26,14 +26,38 @@ html,body{
   background-color: rgb(210, 210, 210);
 }
 
+.jumbotron {
+  background-image: url("http://mscribellito.com/wp-content/uploads/2016/08/cooking.png");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  height: 300px;
+  text-align: center;
+  text-shadow: 4px 6px 16px black;
+}
+
+.jumbotron h1 {
+  padding-top: 100px;
+}
+
+img {
+  border-radius: 50%;
+  margin: 4% 0;
+}
+
 .week-day {
   width: 180px;
   height: 180px;
   border: 1px solid black;
+  background-color: black;
 }
 
 .how-it-works {
-
+  text-align: center;
+  padding-bottom: 50px;
+  border-bottom: 1px solid black;
 }
 
 #recipe-form {
@@ -60,14 +84,18 @@ html,body{
 #user-recipe {
   display:block;
   margin:auto;
+  margin-top: -20px;
+}
+
+.planner {
+  margin: 5% 0;
 }
 
 .sticky {
   position: fixed;
-  z-index: 100;
   top:20px;
-  border-top: 0;
-  /*left:16%;*/
+  border-top: 10px;
+  z-index: 100;
 }
 
 #recipes {
