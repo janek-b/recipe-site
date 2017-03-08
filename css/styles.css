@@ -69,3 +69,7 @@ html,body{
   border-top: 0;
   /*left:16%;*/
 }
+
+#recipes {
+  margin-top: 30px;
+}
