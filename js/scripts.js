@@ -242,20 +242,7 @@ $(function() {
   // recipeBook.recipes.push(awesomeCereal);
   // recipeBook.recipes.push(chili);
   // recipeBook.recipes.push(frittata);
-  // recipeBook.recipes.push(risotto);
-
-  displayRecipes();
-
-  $("#shopping-list").click(function() {
-    var shopList = mealPlan.getIngredients();
-    $("#ingredientListModal").empty();
-    shopList.forEach(function(item) {
-      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
-        item.quantity + " " + item.unit + "</li>");
-    });
-  });
-
-
+  //recipeBook.push(risotto);
 
 
   $("#add-ingredient").click(function(event){
