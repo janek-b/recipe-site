@@ -8,6 +8,22 @@ html,body{
   position: relative;
 }
 
+h3 {
+  display:inline;
+  float:left;
+}
+
+#filter-food{
+  margin-top: 20px;
+  margin-left:20px;
+  font-size: 20px;
+  color:black;
+}
+
+#shopping-list{
+  margin-bottom: 30px;
+}
+
 .affix {
   top: 0;
   width: 100%;
@@ -28,7 +44,7 @@ html,body{
 }
 
 #meal-planner-container {
-  background-color: rgb(210, 210, 210);
+  background-color: #ccced1;
 }
 
 .jumbotron {
@@ -50,7 +66,18 @@ html,body{
 .week-day {
   width: 180px;
   height: 180px;
-  border: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #7a7c7c;
+  margin:auto;
+}
+
+.week-day img{
+  display: block;
+  max-width:180px;
+  max-height:180px;
+  width: auto;
+  height: auto;
+  margin:auto;
 }
 
 .how-it-works {
@@ -94,11 +121,31 @@ hr {
 }
 
 .planner {
-  margin: 5% 0;
+  margin: 2% 0;
+  text-align: center;
+}
+
+.sort{
+  background-color: black;
+  color:white;
+}
+
+.sort div{
+  margin-left: 39%;
 }
 
 #recipes {
   margin-top: 30px;
+}
+
+#recipes img{
+  display: block;
+  max-width:225px;
+  max-height:225px;
+  width: auto;
+  height: auto;
+  margin:auto;
+  padding:10px;
 }
 
 .modal {
