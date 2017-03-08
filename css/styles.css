@@ -15,7 +15,7 @@ html,body{
 
 .affix ~ .container-fluid {
   position: relative;
-  top: 253px;
+  top: 388px;
 }
 
 .header-bg {
@@ -84,18 +84,17 @@ img {
 #user-recipe {
   display:block;
   margin:auto;
-  margin-top: -20px;
+  margin-top: -38px;
+  margin-bottom: 5px;
+}
+
+hr {
+  border-top: 2px solid black;
+
 }
 
 .planner {
   margin: 5% 0;
-}
-
-.sticky {
-  position: fixed;
-  top:20px;
-  border-top: 10px;
-  z-index: 100;
 }
 
 #recipes {
