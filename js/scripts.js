@@ -176,6 +176,25 @@ function drop(ev) {
 };
 
 $(function() {
+    var stickyNavTop = $(".dropDownForm").offset().top;
+
+    var stickyNav = function(){
+    var scrollTop = $(window).scrollTop();
+    console.log(scrollTop);
+
+    if (scrollTop > (stickyNavTop-20)) {
+        $(".dropDownForm").addClass('sticky');
+    } else {
+        $(".dropDownForm").removeClass('sticky');
+    }
+    };
+
+    // stickyNav();
+
+    $(window).scroll(function() {
+      stickyNav();
+    });
+
   function displayRecipes() {
     $("#recipes").empty();
     recipeBook.recipes.forEach(function(recipe) {
@@ -199,14 +218,14 @@ $(function() {
 
   $("#add-ingredient").click(function(event){
     event.preventDefault();
-    $("#new-ingredient").append("<div class='new-ingredient'>"+
+    $("#new-ingredient").append("<div class='new-ingredient row'>"+
             "<div class='form-group col-sm-4'>"+
               "<label for='ingredient-name'>Enter ingredient</label>"+
               "<input class='ingredient-name form-control' type='text' required></div>"+
-            "<div class='form-group col-sm-4'>"+
+            "<div class='form-group col-sm-2'>"+
               "<label for='quantity'>Enter Quantity</label>"+
               "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required></div>"+
-            "<div class='form-group col-sm-4'>"+
+            "<div class='form-group col-sm-2'>"+
               "<label for='Unit'>Unit of Measure</label>"+
               "<select class='form-control unit-of-measure'>"+
                 "<option value=''> <br>"+
@@ -217,19 +236,21 @@ $(function() {
                 "<option value='cup'> cup<br>"+
                 "<option value='pounds'> pound <br>"+
               "</select></div>"+
-            "<div class='meat-or-not'>"+
-              "<p><strong>Does this ingredient contain meat?</strong></p>"+
+            "<div class='meat-or-not  col-sm-2'>"+
+              "<p><strong>Contains meat?</strong></p>"+
               "<div class='form-group'>"+
-                "<label><input type='checkbox' name='meat' value='true'>Yes</label></div>"+
+                "<label><input type='checkbox' name='meat' value='true'> Yes</label></div>"+
             "</div>"+
-            "<div class='dairy-or-not'>"+
-              "<p><strong>Does this ingredient contain dairy?</strong></p>"+
+            "<div class='dairy-or-not  col-sm-2'>"+
+              "<p><strong>Contains dairy?</strong></p>"+
               "<div class='form-group'>"+
-                "<label><input type='checkbox' name='dairy' value='true'>Yes</label></div>"+
+                "<label><input type='checkbox' name='dairy' value='true'> Yes</label></div>"+
             "</div>");
+    $(".new-ingredient").last().hide().slideDown();
   });
   $("#user-recipe").click(function(){
-    $("#recipe-form").slideDown();
+    $("#recipe-form").slideDown()
+    $(".dropDownForm").css("background-color","grey");
   });
   $("#recipe-form").submit(function(event){
     event.preventDefault();
@@ -255,5 +276,8 @@ $(function() {
    recipeBook.recipes.push(newRecipe);
    console.log(recipeBook);
    displayRecipes();
+   $("#recipe-form").slideUp();
+   $(".dropDownForm").css("background-color","");
+   $("#recipe-form").trigger("reset");
   });
 });

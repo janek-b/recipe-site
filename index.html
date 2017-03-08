@@ -10,26 +10,32 @@
     <title>Recipe Site</title>
   </head>
   <body ondrop="drop(event)" ondragover="allowDrop(event)">
-    <div class="container">
-      <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
-        <div class="row">
-          <form id="recipe-form">
-            <div class="form-group">
-              <label for="recipe-name">Enter your recipe name</label>
-              <input id="recipe-name" class="form-control" type="text" required>
-            </div>
+    <div class="container jumbotron">
 
+    </div>
+    <div class="container how-it-works">
+
+    </div>
+    <div class="container dropDownForm">
+      <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
+      <form id="recipe-form">
+        <div class="row">
+          <div class="form-group">
+            <label for="recipe-name">Enter your recipe name</label>
+            <input id="recipe-name" class="form-control" type="text" required>
+          </div>
+        </div>
           <div id="new-ingredient">
-            <div class="new-ingredient">
+            <div class="new-ingredient row">
             <div class="form-group col-sm-4">
               <label for="ingredient-name">Enter ingredient</label>
               <input class="ingredient-name form-control" type="text" required>
             </div>
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-2">
               <label for="quantity">Enter Quantity</label>
               <input class="quantity form-control" type="number" placeholder="Example: 3, 0.5" step="0.1" min="0" required>
             </div>
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-2">
               <label for="Unit">Unit of Measure</label>
               <select class='form-control unit-of-measure' required="">
                 <option value="" disabled selected=""> <br>
@@ -41,9 +47,9 @@
                 <option value="pounds"> pound <br>
               </select>
             </div>
-            <div class="meat-or-not">
+            <div class="meat-or-not col-sm-2">
               <p>
-                <strong>Does this ingredient contain meat?</strong>
+                <strong>Contains meat?</strong>
               </p>
               <div class="form-group">
                 <label>
@@ -52,9 +58,9 @@
                 </label>
               </div>
             </div>
-            <div class="dairy-or-not">
+            <div class="dairy-or-not col-sm-2">
               <p>
-                <strong>Does this ingredient contain dairy?</strong>
+                <strong>Contain dairy?</strong>
               </p>
               <div class="form-group">
                 <label>
@@ -65,28 +71,28 @@
             </div>
 
               <!-- this will contain new ingredient form on click   -->
+            </div>
           </div>
-          </div>
+
+
+          <div class="row">
             <button type="click" id="add-ingredient" class="btn btn-warning">Add additional ingredient</button>
-          <div class="form-group">
-            <label for="meal-image">Add image url for your meal</label>
-            <input id="meal-image" class="form-control" type="text">
-          </div>
-          <div class="form-group">
-            <p>
-              <strong>Enter cooking instructions</strong>
-            </p>
-            <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
-          </div>
+            <div class="form-group">
+              <label for="meal-image">Add image url for your meal</label>
+              <input id="meal-image" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <p>
+                <strong>Enter cooking instructions</strong>
+              </p>
+              <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
+            </div>
 
-
-          <button type="submit" class="btn btn-primary">Add your recipe</button>
+            <button type="submit" class="btn btn-primary">Add your recipe</button>
+          </div>
         </form>
 
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
+      <div class="row planner">
         <div class="col-md-2 col-md-offset-1">
           <h4>Monday</h4>
           <div class="week-day" id="monday">
@@ -116,6 +122,7 @@
           <button id="shopping-list" type="button" class="btn btn-primary">Generate List</button>
         </div>
       </div>
+    </div>
       <div class="row">
         <div class="col-md-4">
           <ul id="recipes">
@@ -123,6 +130,10 @@
           </ul>
         </div>
       </div>
-    </div>
+
+      <div class="jumbotron">
+        <h1> slide under</h1>
+      </div>
+
   </body>
 </html>

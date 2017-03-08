@@ -1,7 +1,15 @@
+html,body{
+  height:2000px;
+}
+
 .week-day {
   width: 180px;
   height: 180px;
   border: 1px solid black;
+}
+
+.how-it-works {
+
 }
 
 #recipe-form {
@@ -10,16 +18,28 @@
 
 .dairy-or-not {
   display: inline-block;
-  margin-left: 2%;
+  margin-bottom: 15px;
 }
 
 .meat-or-not {
   display: inline-block;
-  margin-left: 30%;
+  margin-bottom: 15px;
 }
 
 #add-ingredient {
-  display: block;
-  margin-left: 40%;
-  margin-top: 2%;
+  display:block;
+  margin: auto;
+}
+
+#user-recipe {
+  display:block;
+  margin:auto;
+}
+
+.sticky {
+  position: fixed;
+  z-index: 100;
+  top:20px;
+  border-top: 0;
+  left:16%;
 }
