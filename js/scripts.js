@@ -176,24 +176,30 @@ function drop(ev) {
 };
 
 $(function() {
-    var stickyNavTop = $(".dropDownForm").offset().top;
+  var stickyNavTop = $(".dropDownForm").offset().top;
+  $(window).bind('scroll', function () {
+    if ($(window).scrollTop() >= stickyNavTop) {
+        $('.dropDownForm').addClass('sticky');
+    } else {
+        $('.dropDownForm').removeClass('sticky');
+    }
+  });
 
-    var stickyNav = function(){
-      var scrollTop = $(window).scrollTop();
-      console.log(scrollTop);
 
-      if (scrollTop > (stickyNavTop-20)) {
-          $(".dropDownForm").addClass('sticky');
-      } else {
-          $(".dropDownForm").removeClass('sticky');
-      }
-    };
-
-    // stickyNav();
-
-    $(window).scroll(function() {
-      stickyNav();
-    });
+    // var stickyNavTop = $(".dropDownForm").offset().top;
+    // var stickyNav = function(){
+    //   var scrollTop = $(window).scrollTop();
+    //   console.log(scrollTop);
+    //
+    //   if (scrollTop > (stickyNavTop-20)) {
+    //       $(".dropDownForm").addClass('sticky');
+    //   } else {
+    //       $(".dropDownForm").removeClass('sticky');
+    //   }
+    // };
+    // $(window).scroll(function() {
+    //   stickyNav();
+    // });
 
   function displayRecipes() {
     $("#recipes").empty();
@@ -250,7 +256,7 @@ $(function() {
   });
   $("#user-recipe").click(function(){
     $("#recipe-form").slideDown()
-    $(".dropDownForm").css("background-color","grey");
+    $("Form").css("background-color","grey");
   });
   $("#recipe-form").submit(function(event){
     event.preventDefault();
@@ -277,7 +283,7 @@ $(function() {
    console.log(recipeBook);
    displayRecipes();
    $("#recipe-form").slideUp();
-   $(".dropDownForm").css("background-color","");
+   $("Form").css("background-color","");
    $("#recipe-form").trigger("reset");
   });
 });
