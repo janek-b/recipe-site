@@ -1,5 +1,29 @@
 html,body{
   height:2000px;
+  position: relative;
+}
+
+.affix {
+  top: 0;
+  width: 100%;
+  z-index: 9999 !important;
+}
+
+.dropDownForm {
+  margin-bottom: 0px;
+}
+
+.affix ~ .container-fluid {
+  position: relative;
+  top: 253px;
+}
+
+.header-bg {
+  background-color: rgb(149, 221, 232);
+}
+
+#meal-planner-container {
+  background-color: rgb(210, 210, 210);
 }
 
 .jumbotron {
@@ -38,6 +62,8 @@ img {
 
 #recipe-form {
   display: none;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .dairy-or-not {
@@ -70,4 +96,8 @@ img {
   top:20px;
   border-top: 10px;
   z-index: 100;
+}
+
+#recipes {
+  margin-top: 30px;
 }
