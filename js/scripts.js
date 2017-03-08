@@ -179,14 +179,14 @@ $(function() {
     var stickyNavTop = $(".dropDownForm").offset().top;
 
     var stickyNav = function(){
-    var scrollTop = $(window).scrollTop();
-    console.log(scrollTop);
+      var scrollTop = $(window).scrollTop();
+      console.log(scrollTop);
 
-    if (scrollTop > (stickyNavTop-20)) {
-        $(".dropDownForm").addClass('sticky');
-    } else {
-        $(".dropDownForm").removeClass('sticky');
-    }
+      if (scrollTop > (stickyNavTop-20)) {
+          $(".dropDownForm").addClass('sticky');
+      } else {
+          $(".dropDownForm").removeClass('sticky');
+      }
     };
 
     // stickyNav();
