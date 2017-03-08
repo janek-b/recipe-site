@@ -1,3 +1,8 @@
+#ingredientListModal li {
+  list-style: none;
+  font-size: 20px;
+}
+
 html,body{
   height:2000px;
   position: relative;
@@ -109,7 +114,18 @@ hr {
   display: inline-block;
   width: 40px;
 }
+
 .ingredient-unit {
   display: inline-block;
   width: 90px;
+}
+
+.modal-header {
+  background-color: #6a6a6b;
+  color: white;
+}
+
+.modal-footer {
+  background-color: #6a6a6b;
+  color: white;
 }

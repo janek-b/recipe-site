@@ -215,10 +215,15 @@ $(function() {
 
   $("#shopping-list").click(function() {
     var shopList = mealPlan.getIngredients();
+    $("#ingredientListModal").empty();
     shopList.forEach(function(item) {
-      console.log(item.ingredientName, item.quantity, item.unit);
-    });
+      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
+        item.quantity + " " + item.unit + "</li>");
+    });  
   });
+
+
+
 
   $("#add-ingredient").click(function(event){
     event.preventDefault();
@@ -283,5 +288,7 @@ $(function() {
     $("#recipe-form").slideUp();
     $(".dropDownForm").css("background-color","");
     $("#recipe-form").trigger("reset");
+
+
   });
 });
