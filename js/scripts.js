@@ -208,8 +208,11 @@ $(function() {
     shopList.forEach(function(item) {
       $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
         item.quantity + " " + item.unit + "</li>");
-    });
+    });  
   });
+
+
+
 
   $("#add-ingredient").click(function(event){
     event.preventDefault();
