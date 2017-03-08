@@ -47,11 +47,6 @@ html,body{
   padding-top: 100px;
 }
 
-img {
-  border-radius: 50%;
-  margin: 4% 0;
-}
-
 .week-day {
   width: 180px;
   height: 180px;
@@ -64,17 +59,18 @@ img {
   border-bottom: 1px solid black;
 }
 
+.how-it-works img {
+  border-radius: 50%;
+  margin: 4% 0;
+}
+
 #recipe-form {
   display: none;
   padding-left: 25px;
   padding-right: 25px;
 }
 
-.dairy-or-not {
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
+.dairy-or-not,
 .meat-or-not {
   display: inline-block;
   margin-bottom: 15px;

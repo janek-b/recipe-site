@@ -206,10 +206,28 @@ $(function() {
     };
   };
 
-  recipeBook.recipes.push(awesomeCereal);
-  recipeBook.recipes.push(chili);
-  recipeBook.recipes.push(frittata);
-  recipeBook.recipes.push(risotto);
+  var jsonRecipes = [];
+  jsonRecipes.push(awesomeCereal);
+  jsonRecipes.push(chili);
+  jsonRecipes.push(frittata);
+  jsonRecipes.push(risotto);
+
+  jsonRecipes.forEach(function(recipe) {
+    var newRecipe = new Recipe(recipe.displayName, recipe.imageURL, recipe.instructions);
+    recipe.ingredients.forEach(function(ingredient) {
+      var newIngredient = Object.assign({}, ingredient);
+      newRecipe.ingredients.push(newIngredient);
+    });
+    recipeBook.recipes.push(newRecipe);
+  });
+
+  console.log(recipeBook.recipes);
+
+
+  // recipeBook.recipes.push(awesomeCereal);
+  // recipeBook.recipes.push(chili);
+  // recipeBook.recipes.push(frittata);
+  // recipeBook.recipes.push(risotto);
 
   displayRecipes();
 
@@ -219,7 +237,7 @@ $(function() {
     shopList.forEach(function(item) {
       $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
         item.quantity + " " + item.unit + "</li>");
-    });  
+    });
   });
 
 
