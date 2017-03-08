@@ -1,3 +1,7 @@
+#ingredientListModal li {
+  list-style: none;
+}
+
 html,body{
   height:2000px;
   position: relative;

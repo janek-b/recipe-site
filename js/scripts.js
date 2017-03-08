@@ -205,7 +205,8 @@ $(function() {
   $("#shopping-list").click(function() {
     var shopList = mealPlan.getIngredients();
     shopList.forEach(function(item) {
-      console.log(item.ingredientName, item.quantity, item.unit);
+      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
+        item.quantity + ", " + item.unit + "</li>");
     });
   });
 
