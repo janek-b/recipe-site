@@ -46,7 +46,7 @@ h3 {
 
 .affix ~ .container-fluid {
   position: relative;
-  top: 477px;
+  top: 532px;
 }
 
 #add-recipe{
@@ -96,9 +96,9 @@ h3 {
 }
 
 .week-day:after {
-  content: "drop here";
-  font-size: 1.8em;
-  height: 1.8em;
+  content: "Drag Recipe Here";
+  font-size: 1.5em;
+  height: 1.5em;
   width: 100%;
   position: absolute;
   left: 0;
@@ -243,6 +243,10 @@ h4 {
   text-align: center;
 }
 
+hr {
+  border-top: 2px solid #7a7c7c;
+}
+
 
 .recipe-container {
   float: left;
@@ -260,6 +264,7 @@ h4 {
   position: absolute;
   overflow: hidden;
   text-align: center;
+  width: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

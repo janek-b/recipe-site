@@ -324,6 +324,8 @@ $(function() {
 
   $("#user-recipe").click(function(){
     $("#recipe-form").slideToggle()
+    $("#recipe-toggle").toggleClass("glyphicon-chevron-down");
+    $("#recipe-toggle").toggleClass("glyphicon-chevron-up");
   });
 
   $("#recipe-form").submit(function(event){
