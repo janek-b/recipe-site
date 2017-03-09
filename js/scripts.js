@@ -335,7 +335,7 @@ $(function() {
     if (recipeImage.slice(0, 4) != "http") {
       recipeImage = "https://cdn.pixabay.com/photo/2013/11/28/11/29/cutlery-220219_960_720.jpg"
     };
-    var recipeInstructions = $("input#cooking-instructions").val();
+    var recipeInstructions = $("#cooking-instructions").val();
     var newRecipe = new Recipe(recipeName, recipeImage, recipeInstructions);
     $(".new-ingredient").each(function() {
       var ingredientName = $(this).find("input.ingredient-name").val();
