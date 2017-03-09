@@ -48,11 +48,11 @@ h3 {
 }
 
 .jumbotron {
-  background-image: url("http://mscribellito.com/wp-content/uploads/2016/08/cooking.png");
+  background-image: url("../img/pizza-background.png");
   background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  /*background-size: cover;*/
+  /*background-repeat: no-repeat;*/
+  background-position: bottom;
   color: white;
   height: 300px;
   text-align: center;
