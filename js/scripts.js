@@ -7,6 +7,10 @@ function Ingredient(ingredientName, quantity, unit, meat, dairy) {
   this.dairy = dairy;
 };
 
+Ingredient.prototype.getListFormat = function() {
+  return "<span class='ingredient-quantity'>" + this.quantity + "</span><span class='ingredient-unit'> " + this.unit + "</span><span class='ingredient-name'> " + this.ingredientName + "</span>";
+};
+
 function Recipe(recipeName, imageURL, instructions) {
   this.recipeName = recipeName.replace(/\s/, '-');
   this.displayName = recipeName;
@@ -69,7 +73,7 @@ MealPlan.prototype.getIngredients = function() {
           return item.ingredientName === ingredient.ingredientName
         });
         if (index === -1) {
-          var newIngredient = Object.assign({}, ingredient);
+          var newIngredient = new Ingredient(ingredient.ingredientName, ingredient.quantity, ingredient.unit, ingredient.meat, ingredient.dairy);
           shoppingList.push(newIngredient);
         } else {
           var newValue = converUnits(shoppingList[index].unit, shoppingList[index].quantity, ingredient.unit, ingredient.quantity);
@@ -189,7 +193,7 @@ function populateRecipeDetails(recipe) {
   $("#recipe-details-image").html("<img src='"+recipe.imageURL+"' class='img-responsive'>");
   $("#recipe-details-ingredients").empty();
   recipe.ingredients.forEach(function(ingredient) {
-    $("#recipe-details-ingredients").append("<li><span class='ingredient-quantity'>"+ingredient.quantity + "</span><span class='ingredient-unit'> " + ingredient.unit + "</span><span class='ingredient-name'> " + ingredient.ingredientName + "</span></li>");
+    $("#recipe-details-ingredients").append("<li>" + ingredient.getListFormat() + "</li>");
   });
   $("#recipe-details-instructions").text(recipe.instructions);
   $("#recipe-details-modal").modal();
@@ -235,9 +239,6 @@ $(function() {
     var allrecipes = recipeBook.filter($("#filter-food").val());
     $("#recipes > div").empty();
     for (var i = 0; i < allrecipes.length; i++) {
-      // if (i % 6 === 0) {
-      //   $("#recipes").append("<div class='row'></div>")
-      // }
       var recipe = allrecipes[i];
       $("#recipes > div").last().append("<div class='recipe-container'>"+
         "<img src='"+recipe.imageURL+"' class='recipe-img'>"+
@@ -266,7 +267,7 @@ $(function() {
   jsonRecipes.forEach(function(recipe) {
     var newRecipe = new Recipe(recipe.displayName, recipe.imageURL, recipe.instructions);
     recipe.ingredients.forEach(function(ingredient) {
-      var newIngredient = Object.assign({}, ingredient);
+      var newIngredient = new Ingredient(ingredient.ingredientName, ingredient.quantity, ingredient.unit, ingredient.meat, ingredient.dairy);
       newRecipe.ingredients.push(newIngredient);
     });
     recipeBook.recipes.push(newRecipe);
@@ -278,8 +279,7 @@ $(function() {
     var shopList = mealPlan.getIngredients();
     $("#ingredientListModal").empty();
     shopList.forEach(function(item) {
-      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
-        item.quantity + " " + item.unit + "</li>");
+      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.getListFormat() + "</li>");
     });
   });
 
