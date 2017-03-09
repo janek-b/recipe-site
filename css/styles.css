@@ -23,7 +23,7 @@ h3 {
 
 #filter-food{
   margin-top: 20px;
-  margin-left:20px;
+  margin-left:30px;
   font-size: 20px;
   color:black;
 }
@@ -96,8 +96,10 @@ h3 {
 }
 
 .week-day:after {
-  content: "drop here";
-  font-size: 1.8em;
+  content: "drag recipe here";
+  font-family: 'Comfortaa', cursive;
+  color:white;
+  font-size: 1.3em;
   height: 1.8em;
   width: 100%;
   position: absolute;
@@ -191,8 +193,15 @@ h3 {
 }
 
 .sort div{
-  margin-left: 39%;
+  /*margin-left: 39%;*/
 }
+
+#sort-recipes{
+  width:20%;
+  margin:auto;
+}
+
+
 
 #recipes {
   margin-top: 30px;
@@ -241,6 +250,8 @@ h3 {
 
 h4 {
   text-align: center;
+  font-family: 'Comfortaa', cursive;
+  font-size:25px;
 }
 
 
