@@ -83,6 +83,20 @@ h3 {
   background-color: #7a7c7c;
   margin:auto;
   overflow: hidden;
+  position: relative;
+}
+
+.week-day:after {
+  content: "drop here";
+  font-size: 1.8em;
+  height: 1.8em;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .week-day img{
@@ -91,6 +105,8 @@ h3 {
   height: auto;
   margin:auto;
   cursor: pointer;
+  position: relative;
+  z-index: 10;
 }
 
 .how-it-works {
