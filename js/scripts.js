@@ -336,24 +336,28 @@ $(function() {
     event.preventDefault();
     var recipeName = $("input#recipe-name").val();
     var recipeImage = $("input#meal-image").val();
+    if (recipeImage.slice(0, 4) != "http") {
+      recipeImage = "https://cdn.pixabay.com/photo/2013/11/28/11/29/cutlery-220219_960_720.jpg"
+    };
     var recipeInstructions = $("input#cooking-instructions").val();
     var newRecipe = new Recipe(recipeName, recipeImage, recipeInstructions);
     $(".new-ingredient").each(function() {
       var ingredientName = $(this).find("input.ingredient-name").val();
       var quantity = parseFloat($(this).find("input.quantity").val());
       var unit = $(this).find("select.unit-of-measure").val();
-      var containsMeat = Boolean(
-      $(this).find("input:checkbox[name=meat]:checked").val());
-      var containsDairy = Boolean( $(this).find("input:checkbox[name=dairy]:checked").val());
+      var containsMeat = Boolean($(this).find("input:checkbox[name=meat]:checked").val());
+      var containsDairy = Boolean($(this).find("input:checkbox[name=dairy]:checked").val());
       var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
       newRecipe.ingredients.push(newIngredient);
     });
     recipeBook.recipes.push(newRecipe);
     displayRecipes();
     $("#recipe-form").slideUp();
-    $(".dropDownForm").css("background-color","");
-    $("#recipe-form").trigger("reset");
-    $("#new-ingredients").empty();
-    insertIngredient();
+    var timeoutID = window.setTimeout(resetForm, 1000);
+    function resetForm() {
+      $("#recipe-form").trigger("reset");
+      $("#new-ingredients").empty();
+      insertIngredient();
+    };
   });
 });
