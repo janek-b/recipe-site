@@ -256,13 +256,7 @@ $(function() {
     displayRecipes();
   });
 
-  var jsonRecipes = [];
-  jsonRecipes.push(awesomeCereal);
-  jsonRecipes.push(chili);
-  jsonRecipes.push(frittata);
-  jsonRecipes.push(risotto);
-  jsonRecipes.push(chickenTortilla);
-  jsonRecipes.push(porkTenderloin);
+  var jsonRecipes = [chili, frittata, risotto, chickenTortilla, porkTenderloin, pecanCrustedTrout, panSearedSteak, chipCrustedFishFillets, barbecueStuffedPotatoes];
 
   jsonRecipes.forEach(function(recipe) {
     var newRecipe = new Recipe(recipe.displayName, recipe.imageURL, recipe.instructions);
@@ -291,7 +285,7 @@ $(function() {
       "</div>"+
       "<div class='form-group col-sm-2'>"+
         "<label for='quantity'>Enter Quantity</label>"+
-        "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required>"+
+        "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.01' min='0' required>"+
       "</div>"+
       "<div class='form-group col-sm-2'>"+
         "<label for='Unit'>Unit of Measure</label>"+
@@ -300,9 +294,9 @@ $(function() {
           "<option value='each'> each<br>"+
           "<option value='teaspoon'> teaspoon<br>"+
           "<option value='tablespoon'> tablespoon<br>"+
-          "<option value='ounces'> ounce<br>"+
+          "<option value='ounce'> ounce<br>"+
           "<option value='cup'> cup<br>"+
-          "<option value='pounds'> pound <br>"+
+          "<option value='pound'> pound <br>"+
         "</select>"+
       "</div>"+
       "<div class='form-inline meat-dairy col-sm-2'>"+
