@@ -1,10 +1,4 @@
-/*font-family: 'Raleway', sans-serif;
-font-family: 'Lobster', cursive;
-font-family: 'Josefin Sans', sans-serif;
-font-family: 'Varela Round', sans-serif;
-font-family: 'Play', sans-serif;
-font-family: 'Comfortaa', cursive;
-font-family: 'Righteous', cursive;*/
+
 
 #ingredientListModal li {
   list-style: none;
@@ -46,7 +40,7 @@ h3 {
 
 .affix ~ .container-fluid {
   position: relative;
-  top: 477px;
+  top: 532px;
 }
 
 #add-recipe{
@@ -254,6 +248,10 @@ h4 {
   font-size:25px;
 }
 
+hr {
+  border-top: 2px solid #7a7c7c;
+}
+
 
 .recipe-container {
   float: left;
@@ -271,6 +269,7 @@ h4 {
   position: absolute;
   overflow: hidden;
   text-align: center;
+  width: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
