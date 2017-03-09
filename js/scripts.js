@@ -290,11 +290,11 @@ $(function() {
         "<input class='ingredient-name form-control' type='text' required>"+
       "</div>"+
       "<div class='form-group col-sm-2'>"+
-        "<label for='quantity'>Enter Quantity</label>"+
-        "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required>"+
+        "<label for='quantity'>Quantity</label>"+
+        "<input class='quantity form-control' type='number' step='0.1' min='0' required>"+
       "</div>"+
       "<div class='form-group col-sm-2'>"+
-        "<label for='Unit'>Unit of Measure</label>"+
+        "<label for='Unit'>Unit</label>"+
         "<select class='form-control unit-of-measure'>"+
           "<option value=''> <br>"+
           "<option value='each'> each<br>"+
@@ -305,7 +305,7 @@ $(function() {
           "<option value='pounds'> pound <br>"+
         "</select>"+
       "</div>"+
-      "<div class='form-inline meat-dairy col-sm-2'>"+
+      "<div class='form-inline meat-dairy col-sm-3'>"+
         "<p><strong>Contains:</strong></p>"+
         "<div class='form-group'>"+
           "<label><input type='checkbox' name='meat' value='true'> Meat</label>"+

@@ -34,11 +34,12 @@
     </div>
     <div class="dropDownForm" data-spy="affix" data-offset-top="993">
 
-      <div class="container-fluid" id="form-pizza">
+      <div class="container-fluid" id="form-input">
         <button type="button" class="btn btn-success btn-block btn-lg" id="user-recipe">Create a recipe</button>
+        <div class="container" id="recipe-form-container">
         <form id="recipe-form">
           <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="recipe-name">Enter your recipe name</label>
                 <input id="recipe-name" class="form-control" type="text" required>
@@ -48,8 +49,8 @@
           <div id="new-ingredients">
           </div>
           <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-              <button type="button" id="add-ingredient" class="pull-right btn btn-warning">Add additional ingredient</button>
+            <div class="col-md-12">
+              <button type="button" id="add-ingredient" class="pull-right btn btn-danger">Add additional ingredient</button>
               <br>
               <div class="form-group">
                 <label for="meal-image">Add image url for your meal</label>
@@ -61,10 +62,11 @@
                 </p>
                 <textarea class="form-control" rows="3" id="cooking-instructions"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Add your recipe</button>
+              <button type="submit" class="btn btn-success" id="add-recipe">Add your recipe</button>
             </div>
           </div>
         </form>
+      </div>
       </div>
       <div id="meal-planner-container" class="container-fluid">
 
