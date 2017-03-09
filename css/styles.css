@@ -1,10 +1,4 @@
-/*font-family: 'Raleway', sans-serif;
-font-family: 'Lobster', cursive;
-font-family: 'Josefin Sans', sans-serif;
-font-family: 'Varela Round', sans-serif;
-font-family: 'Play', sans-serif;
-font-family: 'Comfortaa', cursive;
-font-family: 'Righteous', cursive;*/
+
 
 #ingredientListModal li {
   list-style: none;
@@ -23,7 +17,7 @@ h3 {
 
 #filter-food{
   margin-top: 20px;
-  margin-left:20px;
+  margin-left:30px;
   font-size: 20px;
   color:black;
 }
@@ -96,9 +90,11 @@ h3 {
 }
 
 .week-day:after {
-  content: "Drag Recipe Here";
-  font-size: 1.5em;
-  height: 1.5em;
+  content: "drag recipe here";
+  font-family: 'Comfortaa', cursive;
+  color:white;
+  font-size: 1.3em;
+  height: 1.8em;
   width: 100%;
   position: absolute;
   left: 0;
@@ -191,8 +187,15 @@ h3 {
 }
 
 .sort div{
-  margin-left: 39%;
+  /*margin-left: 39%;*/
 }
+
+#sort-recipes{
+  width:20%;
+  margin:auto;
+}
+
+
 
 #recipes {
   margin-top: 30px;
@@ -241,6 +244,8 @@ h3 {
 
 h4 {
   text-align: center;
+  font-family: 'Comfortaa', cursive;
+  font-size:25px;
 }
 
 hr {
