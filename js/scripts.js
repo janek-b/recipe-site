@@ -7,6 +7,10 @@ function Ingredient(ingredientName, quantity, unit, meat, dairy) {
   this.dairy = dairy;
 };
 
+Ingredient.prototype.getListFormat = function() {
+  return "<span class='ingredient-quantity'>" + this.quantity + "</span><span class='ingredient-unit'> " + this.unit + "</span><span class='ingredient-name'> " + this.ingredientName + "</span>";
+};
+
 function Recipe(recipeName, imageURL, instructions) {
   this.recipeName = recipeName.replace(/\s/, '-');
   this.displayName = recipeName;
@@ -69,7 +73,7 @@ MealPlan.prototype.getIngredients = function() {
           return item.ingredientName === ingredient.ingredientName
         });
         if (index === -1) {
-          var newIngredient = Object.assign({}, ingredient);
+          var newIngredient = new Ingredient(ingredient.ingredientName, ingredient.quantity, ingredient.unit, ingredient.meat, ingredient.dairy);
           shoppingList.push(newIngredient);
         } else {
           var newValue = converUnits(shoppingList[index].unit, shoppingList[index].quantity, ingredient.unit, ingredient.quantity);
@@ -189,7 +193,7 @@ function populateRecipeDetails(recipe) {
   $("#recipe-details-image").html("<img src='"+recipe.imageURL+"' class='img-responsive'>");
   $("#recipe-details-ingredients").empty();
   recipe.ingredients.forEach(function(ingredient) {
-    $("#recipe-details-ingredients").append("<li><span class='ingredient-quantity'>"+ingredient.quantity + "</span><span class='ingredient-unit'> " + ingredient.unit + "</span><span class='ingredient-name'> " + ingredient.ingredientName + "</span></li>");
+    $("#recipe-details-ingredients").append("<li>" + ingredient.getListFormat() + "</li>");
   });
   $("#recipe-details-instructions").text(recipe.instructions);
   $("#recipe-details-modal").modal();
@@ -235,9 +239,6 @@ $(function() {
     var allrecipes = recipeBook.filter($("#filter-food").val());
     $("#recipes > div").empty();
     for (var i = 0; i < allrecipes.length; i++) {
-      // if (i % 6 === 0) {
-      //   $("#recipes").append("<div class='row'></div>")
-      // }
       var recipe = allrecipes[i];
       $("#recipes > div").last().append("<div class='recipe-container'>"+
         "<img src='"+recipe.imageURL+"' class='recipe-img'>"+
@@ -266,7 +267,7 @@ $(function() {
   jsonRecipes.forEach(function(recipe) {
     var newRecipe = new Recipe(recipe.displayName, recipe.imageURL, recipe.instructions);
     recipe.ingredients.forEach(function(ingredient) {
-      var newIngredient = Object.assign({}, ingredient);
+      var newIngredient = new Ingredient(ingredient.ingredientName, ingredient.quantity, ingredient.unit, ingredient.meat, ingredient.dairy);
       newRecipe.ingredients.push(newIngredient);
     });
     recipeBook.recipes.push(newRecipe);
@@ -278,40 +279,53 @@ $(function() {
     var shopList = mealPlan.getIngredients();
     $("#ingredientListModal").empty();
     shopList.forEach(function(item) {
-      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.ingredientName + ", " +
-        item.quantity + " " + item.unit + "</li>");
+      $("#ingredientListModal").append("<li><input type='checkbox'> " + item.getListFormat() + "</li>");
     });
   });
 
-  $("#add-ingredient").click(function(event){
-    event.preventDefault();
-    $("#new-ingredient").append("<div class='new-ingredient row'>"+
-            "<div class='form-group col-sm-4 col-sm-offset-1'>"+
-              "<label for='ingredient-name'>Enter ingredient</label>"+
-              "<input class='ingredient-name form-control' type='text' required></div>"+
-            "<div class='form-group col-sm-2'>"+
-              "<label for='quantity'>Enter Quantity</label>"+
-              "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required></div>"+
-            "<div class='form-group col-sm-2'>"+
-              "<label for='Unit'>Unit of Measure</label>"+
-              "<select class='form-control unit-of-measure'>"+
-                "<option value=''> <br>"+
-                "<option value='each'> each<br>"+
-                "<option value='teaspoon'> teaspoon<br>"+
-                "<option value='tablespoon'> tablespoon<br>"+
-                "<option value='ounces'> ounce<br>"+
-                "<option value='cup'> cup<br>"+
-                "<option value='pounds'> pound <br>"+
-              "</select></div>"+
-            "<div class='form-inline meat-dairy col-sm-2'>"+
-              "<p><strong>Contains:</strong></p>"+
-              "<div class='form-group'>"+
-                "<label><input type='checkbox' name='meat' value='true'> Meat</label></div>"+
-              "<div class='form-group'>"+
-                "<label><input type='checkbox' name='dairy' value='true'> Dairy</label></div>"+
-            "</div>"+
-          "</div>");
+  function insertIngredient() {
+    $("#new-ingredients").append("<div class='new-ingredient row'>"+
+      "<div class='form-group col-sm-4 col-sm-offset-1'>"+
+        "<label for='ingredient-name'>Enter ingredient</label>"+
+        "<input class='ingredient-name form-control' type='text' required>"+
+      "</div>"+
+      "<div class='form-group col-sm-2'>"+
+        "<label for='quantity'>Enter Quantity</label>"+
+        "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required>"+
+      "</div>"+
+      "<div class='form-group col-sm-2'>"+
+        "<label for='Unit'>Unit of Measure</label>"+
+        "<select class='form-control unit-of-measure'>"+
+          "<option value=''> <br>"+
+          "<option value='each'> each<br>"+
+          "<option value='teaspoon'> teaspoon<br>"+
+          "<option value='tablespoon'> tablespoon<br>"+
+          "<option value='ounces'> ounce<br>"+
+          "<option value='cup'> cup<br>"+
+          "<option value='pounds'> pound <br>"+
+        "</select>"+
+      "</div>"+
+      "<div class='form-inline meat-dairy col-sm-2'>"+
+        "<p><strong>Contains:</strong></p>"+
+        "<div class='form-group'>"+
+          "<label><input type='checkbox' name='meat' value='true'> Meat</label>"+
+        "</div>"+
+        "<div class='form-group'>"+
+          "<label><input type='checkbox' name='dairy' value='true'> Dairy</label>"+
+        "</div>"+
+        "<span class='glyphicon glyphicon-remove-circle remove-ingredient'></span>"+
+      "</div>"+
+    "</div>");
     $(".new-ingredient").last().hide().slideDown();
+    $(".remove-ingredient").last().click(function() {
+      $(this).parents(".new-ingredient").remove();
+    });
+  };
+
+  insertIngredient();
+
+  $("#add-ingredient").click(function(){
+    insertIngredient();
   });
 
   $("#user-recipe").click(function(){
@@ -322,22 +336,28 @@ $(function() {
     event.preventDefault();
     var recipeName = $("input#recipe-name").val();
     var recipeImage = $("input#meal-image").val();
+    if (recipeImage.slice(0, 4) != "http") {
+      recipeImage = "https://cdn.pixabay.com/photo/2013/11/28/11/29/cutlery-220219_960_720.jpg"
+    };
     var recipeInstructions = $("input#cooking-instructions").val();
     var newRecipe = new Recipe(recipeName, recipeImage, recipeInstructions);
     $(".new-ingredient").each(function() {
       var ingredientName = $(this).find("input.ingredient-name").val();
       var quantity = parseFloat($(this).find("input.quantity").val());
       var unit = $(this).find("select.unit-of-measure").val();
-      var containsMeat = Boolean(
-      $(this).find("input:checkbox[name=meat]:checked").val());
-      var containsDairy = Boolean( $(this).find("input:checkbox[name=dairy]:checked").val());
+      var containsMeat = Boolean($(this).find("input:checkbox[name=meat]:checked").val());
+      var containsDairy = Boolean($(this).find("input:checkbox[name=dairy]:checked").val());
       var newIngredient = new Ingredient(ingredientName, quantity, unit, containsMeat, containsDairy);
       newRecipe.ingredients.push(newIngredient);
     });
     recipeBook.recipes.push(newRecipe);
     displayRecipes();
     $("#recipe-form").slideUp();
-    $(".dropDownForm").css("background-color","");
-    $("#recipe-form").trigger("reset");
+    var timeoutID = window.setTimeout(resetForm, 1000);
+    function resetForm() {
+      $("#recipe-form").trigger("reset");
+      $("#new-ingredients").empty();
+      insertIngredient();
+    };
   });
 });
