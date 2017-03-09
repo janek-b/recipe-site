@@ -36,7 +36,7 @@ h3 {
 
 .affix ~ .container-fluid {
   position: relative;
-  top: 388px;
+  top: 450px;
 }
 
 .header-bg {
@@ -138,12 +138,12 @@ hr {
 
 #recipes img{
   display: block;
-  max-width:225px;
-  max-height:225px;
+  /*max-width:225px;
+  max-height:225px;*/
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
-  height: auto;
   margin:auto;
-  padding:10px;
 }
 
 .modal {
@@ -175,8 +175,10 @@ hr {
   float: left;
   position: relative;
   display: block;
-  width: 20%;
-  height: auto;
+  width:225px;
+  height:225px;
+  /*width: 20%;
+  height: auto;*/
 }
 
 .hover-text {
@@ -185,7 +187,6 @@ hr {
   position: absolute;
   overflow: hidden;
   text-align: center;
-  /*width: 80%;*/
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
