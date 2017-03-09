@@ -256,7 +256,7 @@ $(function() {
     displayRecipes();
   });
 
-  var jsonRecipes = [chili, frittata, risotto, chickenTortilla, porkTenderloin, pecanCrustedTrout, panSearedSteak, chipCrustedFishFillets, barbecueStuffedPotatoes, BbqStuffedSweetPotatoes, SkilletChickpeas, HamAndCheeseRollup, ThaiBakedSalmon, TomatoSauceWOnion];
+  var jsonRecipes = [chili, frittata, risotto, chickenTortilla, porkTenderloin, pecanCrustedTrout, panSearedSteak, chipCrustedFishFillets, barbecueStuffedPotatoes, BbqStuffedSweetPotatoes, SkilletChickpeas, HamAndCheeseRollup, ThaiBakedSalmon, TomatoSauceWOnion, TeriyakiChicken, MushroomRicePilaf, AppleJuiceChicken, BabyBackRibs, FritoPie, EasyNachos];
 
   jsonRecipes.forEach(function(recipe) {
     var newRecipe = new Recipe(recipe.displayName, recipe.imageURL, recipe.instructions);
