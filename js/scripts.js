@@ -260,6 +260,8 @@ $(function() {
   jsonRecipes.push(chili);
   jsonRecipes.push(frittata);
   jsonRecipes.push(risotto);
+  jsonRecipes.push(chickenTortilla);
+  jsonRecipes.push(porkTenderloin);
 
   jsonRecipes.forEach(function(recipe) {
     var newRecipe = new Recipe(recipe.displayName, recipe.imageURL, recipe.instructions);
