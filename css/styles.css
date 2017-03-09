@@ -49,9 +49,12 @@ h3 {
   top: 477px;
 }
 
+#add-recipe{
+  float:right;
+}
 
 #meal-planner-container {
-  background-color: #ccced1;
+  background-color: white;
 }
 
 .jumbotron {
@@ -69,6 +72,12 @@ h3 {
   font-family: 'Comfortaa', cursive;
   padding-top: 100px;
   font-size: 100px;
+}
+
+#form-input {
+  background-image: url("../img/farmers-market.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .jumbotron p {
@@ -129,12 +138,20 @@ h3 {
 
 #recipe-form {
   display: none;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding:25px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom:6%;
+  width:65%;
+  box-shadow: 4px 4px 15px black;
+}
+
+#recipe-form-container{
+  margin-left:35px;
 }
 
 .meat-dairy .form-group{
-  display: inline-block;
+  /*display: inline-block;*/
   margin-right: 15px;
 }
 
@@ -158,8 +175,9 @@ h3 {
   display:block;
   margin:auto;
   width: 15%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 2%;
+  margin-bottom:2%;
+  box-shadow: 2px 2px 9px black;
 }
 
 .planner {
