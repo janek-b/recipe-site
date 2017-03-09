@@ -190,6 +190,7 @@ pecanCrustedTrout = {"recipeName": "pecan-crusted-trout",
       "dairy": false },
     {"ingredientName": "lemon wedge",
       "quantity": 4,
+      "unit": "each",
       "meat": false,
       "dairy": false }
   ],
