@@ -1,3 +1,11 @@
+/*font-family: 'Raleway', sans-serif;
+font-family: 'Lobster', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Varela Round', sans-serif;
+font-family: 'Play', sans-serif;
+font-family: 'Comfortaa', cursive;
+font-family: 'Righteous', cursive;*/
+
 #ingredientListModal li {
   list-style: none;
   font-size: 20px;
@@ -21,7 +29,9 @@ h3 {
 }
 
 #shopping-list{
+  margin: auto;
   margin-bottom: 30px;
+  width: 15%;
 }
 
 .affix {
@@ -39,28 +49,31 @@ h3 {
   top: 450px;
 }
 
-.header-bg {
-  background-color: rgb(149, 221, 232);
-}
 
 #meal-planner-container {
   background-color: #ccced1;
 }
 
 .jumbotron {
-  background-image: url("../img/pizza-background.png");
+  background-image: url("../img/pizza-background-crop.png");
   background-attachment: fixed;
-  /*background-size: cover;*/
-  /*background-repeat: no-repeat;*/
-  background-position: bottom;
+  background-repeat: no-repeat;
+  /*background-position: center;*/
   color: white;
-  height: 300px;
-  text-align: center;
+  height: 500px;
+  text-align: left;
   text-shadow: 4px 6px 16px black;
 }
 
 .jumbotron h1 {
+  font-family: 'Comfortaa', cursive;
   padding-top: 100px;
+  font-size: 100px;
+}
+
+.jumbotron p {
+  font-size: 36px;
+  margin-left: 3%;
 }
 
 .week-day {
@@ -85,9 +98,17 @@ h3 {
   padding-bottom: 50px;
 }
 
+.how-it-works h1 {
+  font-size: 63px;
+  font-weight: bold;
+  font-family: 'Comfortaa', cursive;
+  margin-bottom: 2.5%;
+}
+
 .how-it-works img {
-  border-radius: 50%;
   margin: 4% 0;
+  max-height: 200px;
+  max-width: 200px;
 }
 
 #recipe-form {
@@ -109,13 +130,9 @@ h3 {
 #user-recipe {
   display:block;
   margin:auto;
-  margin-top: -38px;
-  margin-bottom: 5px;
-}
-
-hr {
-  border-top: 2px solid black;
-
+  width: 15%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .planner {

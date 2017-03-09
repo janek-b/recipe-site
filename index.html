@@ -7,44 +7,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="recipes.json"></script>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans|Lobster|Play|Raleway|Righteous|Varela+Round" rel="stylesheet">
     <title>Recipe Site</title>
   </head>
   <body data-spy="scroll" data-target=".dropDownForm" data-offset="718" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class="container-fluid jumbotron">
-      <h1>Meal Planner</h1>
-      <p>Let us help you out</p>
+      <h1>The Kitchen Counter</h1>
+      <p>Planning never tasted so good</p>
     </div>
     <div class="container how-it-works">
       <div class="row">
-        <h1>Here's how it works</h1>
+        <h1>How it works</h1>
         <div class="col-sm-4">
-          <h4>Plan Weekday Meals</h4>
-          <img src="http://www.munchkintime.com/wp-content/plugins/visual-recipe-index/includes/timthumb.php?src=http%3A%2F%2Fwww.munchkintime.com%2Fwp-content%2Fuploads%2F2016%2F12%2FChicken-Stir-Fry-Easy-Dinner-Recipe-Munchkin-Time-40.jpg&h=180&w=180&zc=1&q=100" alt="" />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-          </p>
+          <img src="img/003-recipe.png" alt="" />
+          <h2>Use our recipes or create your own</h2>
         </div>
         <div class="col-sm-4">
-          <h4>Create and Add Your Own Recipes</h4>
-          <img src="http://www.munchkintime.com/wp-content/plugins/visual-recipe-index/includes/timthumb.php?src=http%3A%2F%2Fwww.munchkintime.com%2Fwp-content%2Fuploads%2F2016%2F12%2FChicken-Stir-Fry-Easy-Dinner-Recipe-Munchkin-Time-40.jpg&h=180&w=180&zc=1&q=100" alt="" />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-          </p>
+          <img src="img/002-time.png" alt="" />
+          <h2>Choose your weekly meals</h2>
         </div>
         <div class="col-sm-4">
-          <h4>Generate a Shopping List</h4>
-          <img src="http://www.munchkintime.com/wp-content/plugins/visual-recipe-index/includes/timthumb.php?src=http%3A%2F%2Fwww.munchkintime.com%2Fwp-content%2Fuploads%2F2016%2F12%2FChicken-Stir-Fry-Easy-Dinner-Recipe-Munchkin-Time-40.jpg&h=180&w=180&zc=1&q=100" alt="" />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-          </p>
+          <img src="img/001-interface.png" alt="" />
+          <h2>We'll make your shopping list</h2>
         </div>
       </div>
     </div>
     <div class="dropDownForm" data-spy="affix" data-offset-top="718">
 
-      <div class="container-fluid header-bg">
-        <hr>
-        <button type="button" class="btn btn-success" id="user-recipe">Create a recipe</button>
+      <div class="container-fluid" id="form-pizza">
+        <button type="button" class="btn btn-success btn-block btn-lg" id="user-recipe">Create a recipe</button>
         <form id="recipe-form">
           <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -145,13 +136,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <button id="shopping-list" type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#shoppingListModal">Generate Shopping List</button>
-          </div>
-
-
+          <button id="shopping-list" type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#shoppingListModal">Get Shopping List</button>
         </div>
       </div>
+
       <div class="container-fluid sort">
         <div class="col-md-12">
           <h3>Sort Recipe Types</h3>
