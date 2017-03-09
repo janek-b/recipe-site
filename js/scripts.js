@@ -283,35 +283,49 @@ $(function() {
     });
   });
 
-  $("#add-ingredient").click(function(event){
-    event.preventDefault();
-    $("#new-ingredient").append("<div class='new-ingredient row'>"+
-            "<div class='form-group col-sm-4 col-sm-offset-1'>"+
-              "<label for='ingredient-name'>Enter ingredient</label>"+
-              "<input class='ingredient-name form-control' type='text' required></div>"+
-            "<div class='form-group col-sm-2'>"+
-              "<label for='quantity'>Enter Quantity</label>"+
-              "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required></div>"+
-            "<div class='form-group col-sm-2'>"+
-              "<label for='Unit'>Unit of Measure</label>"+
-              "<select class='form-control unit-of-measure'>"+
-                "<option value=''> <br>"+
-                "<option value='each'> each<br>"+
-                "<option value='teaspoon'> teaspoon<br>"+
-                "<option value='tablespoon'> tablespoon<br>"+
-                "<option value='ounces'> ounce<br>"+
-                "<option value='cup'> cup<br>"+
-                "<option value='pounds'> pound <br>"+
-              "</select></div>"+
-            "<div class='form-inline meat-dairy col-sm-2'>"+
-              "<p><strong>Contains:</strong></p>"+
-              "<div class='form-group'>"+
-                "<label><input type='checkbox' name='meat' value='true'> Meat</label></div>"+
-              "<div class='form-group'>"+
-                "<label><input type='checkbox' name='dairy' value='true'> Dairy</label></div>"+
-            "</div>"+
-          "</div>");
+  function insertIngredient() {
+    $("#new-ingredients").append("<div class='new-ingredient row'>"+
+      "<div class='form-group col-sm-4 col-sm-offset-1'>"+
+        "<label for='ingredient-name'>Enter ingredient</label>"+
+        "<input class='ingredient-name form-control' type='text' required>"+
+      "</div>"+
+      "<div class='form-group col-sm-2'>"+
+        "<label for='quantity'>Enter Quantity</label>"+
+        "<input class='quantity form-control' type='number' placeholder='Example: 3, 0.5' step='0.1' min='0' required>"+
+      "</div>"+
+      "<div class='form-group col-sm-2'>"+
+        "<label for='Unit'>Unit of Measure</label>"+
+        "<select class='form-control unit-of-measure'>"+
+          "<option value=''> <br>"+
+          "<option value='each'> each<br>"+
+          "<option value='teaspoon'> teaspoon<br>"+
+          "<option value='tablespoon'> tablespoon<br>"+
+          "<option value='ounces'> ounce<br>"+
+          "<option value='cup'> cup<br>"+
+          "<option value='pounds'> pound <br>"+
+        "</select>"+
+      "</div>"+
+      "<div class='form-inline meat-dairy col-sm-2'>"+
+        "<p><strong>Contains:</strong></p>"+
+        "<div class='form-group'>"+
+          "<label><input type='checkbox' name='meat' value='true'> Meat</label>"+
+        "</div>"+
+        "<div class='form-group'>"+
+          "<label><input type='checkbox' name='dairy' value='true'> Dairy</label>"+
+        "</div>"+
+        "<span class='glyphicon glyphicon-remove-circle remove-ingredient'></span>"+
+      "</div>"+
+    "</div>");
     $(".new-ingredient").last().hide().slideDown();
+    $(".remove-ingredient").last().click(function() {
+      $(this).parents(".new-ingredient").remove();
+    });
+  };
+
+  insertIngredient();
+
+  $("#add-ingredient").click(function(){
+    insertIngredient();
   });
 
   $("#user-recipe").click(function(){
@@ -339,5 +353,7 @@ $(function() {
     $("#recipe-form").slideUp();
     $(".dropDownForm").css("background-color","");
     $("#recipe-form").trigger("reset");
+    $("#new-ingredients").empty();
+    insertIngredient();
   });
 });

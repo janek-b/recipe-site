@@ -104,6 +104,17 @@ h3 {
 #add-ingredient {
   display:block;
   margin: auto;
+  margin-bottom: 15px;
+}
+
+.remove-ingredient {
+  float: right;
+  color: black;
+  cursor: pointer;
+}
+
+.remove-ingredient:hover {
+  color: red;
 }
 
 #user-recipe {
