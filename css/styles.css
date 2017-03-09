@@ -1,14 +1,8 @@
-/*font-family: 'Raleway', sans-serif;
-font-family: 'Lobster', cursive;
-font-family: 'Josefin Sans', sans-serif;
-font-family: 'Varela Round', sans-serif;
-font-family: 'Play', sans-serif;
-font-family: 'Comfortaa', cursive;
-font-family: 'Righteous', cursive;*/
+
 
 #ingredientListModal li {
   list-style: none;
-  font-size: 20px;
+  font-size: 1.2em;
 }
 
 html,body{
@@ -23,7 +17,7 @@ h3 {
 
 #filter-food{
   margin-top: 20px;
-  margin-left:20px;
+  margin-left:30px;
   font-size: 20px;
   color:black;
 }
@@ -46,7 +40,7 @@ h3 {
 
 .affix ~ .container-fluid {
   position: relative;
-  top: 477px;
+  top: 532px;
 }
 
 #add-recipe{
@@ -96,8 +90,10 @@ h3 {
 }
 
 .week-day:after {
-  content: "drop here";
-  font-size: 1.8em;
+  content: "drag recipe here";
+  font-family: 'Comfortaa', cursive;
+  color:white;
+  font-size: 1.3em;
   height: 1.8em;
   width: 100%;
   position: absolute;
@@ -191,8 +187,15 @@ h3 {
 }
 
 .sort div{
-  margin-left: 39%;
+  /*margin-left: 39%;*/
 }
+
+#sort-recipes{
+  width:30%;
+  margin: auto;
+}
+
+
 
 #recipes {
   margin-top: 30px;
@@ -241,6 +244,12 @@ h3 {
 
 h4 {
   text-align: center;
+  font-family: 'Comfortaa', cursive;
+  font-size:25px;
+}
+
+hr {
+  border-top: 2px solid #7a7c7c;
 }
 
 
@@ -260,6 +269,7 @@ h4 {
   position: absolute;
   overflow: hidden;
   text-align: center;
+  width: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
